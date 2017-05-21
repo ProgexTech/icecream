@@ -15,6 +15,10 @@
         <label>Order No</label>
         <input class="form-control" type="text" name="orderNo" />
     </div>
+    <div class="form-group">
+        <label>Quantity</label>
+        <input class="form-control" type="number" name="qty" />
+    </div>
 <!--<div class="form-group">
         <label >Date</label>
         <input type="date" class="form-control" rows="3" name="date"/>
