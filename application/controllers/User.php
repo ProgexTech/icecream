@@ -19,13 +19,16 @@ class User extends CI_Controller {
 
         redirect(base_url());
     }
-
-    public function authenticate() {
+    
+    public function login() {
         $this->load->model('user_model');
         $this->load->model('role_model');
+        
         $uName = $this->input->post('uName');
         $password = md5($this->input->post('password'));
+        
         $currentUser = $this->user_model->authenticate($uName, $password);
+        
         if ($currentUser) {
             $role = $this->role_model->get_role_by_id($currentUser->roleId);
             if ($role) {
@@ -39,25 +42,9 @@ class User extends CI_Controller {
             }
         } else {
             $data['login_errors'] = 'Login failed. Please enter valid username and password';
-            $data['main_content'] = "login_view";
+            $data['main_content'] = "user/login";
             $this->load->view("layouts/main", $data);
         }
-    }
-
-    public function view_profile($userId) {
-        $this->load->model('user_model');
-        $this->load->model('task_model');
-        $this->load->model('skill_model');
-        
-        $uId = base64_decode(urldecode($userId));
-        $result = $this->task_model->getAverageUserRating($uId);
-        foreach($result as &$value)
-        {
-             $data['rating']  = ceil($value['AvgRating']);
-        }
-        $data['userId'] = $userId;
-        $data['main_content'] = "user_profile";
-        $this->load->view("layouts/main", $data);
     }
 
     public function update_profile() {
