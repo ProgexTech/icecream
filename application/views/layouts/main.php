@@ -35,8 +35,8 @@ function hasPermission($url) {
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Orders<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="<?php echo base_url(); ?>order/addOrder/<?php echo urlencode(base64_encode('1')); ?>">Add Order</a></li>
-                                    
+                                    <li><a href="<?php echo base_url(); ?>order">Add Order</a></li>
+                                    <li><a href="<?php echo base_url(); ?>order/viewOrders">View Orders</a></li>
                                 </ul>
                             </li>
                         <?php endif; ?>
@@ -45,7 +45,7 @@ function hasPermission($url) {
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Users<b class="caret"></b></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="<?php echo base_url(); ?>user/register">Add User</a></li>
-                                    
+
                                 </ul>
                             </li>
                         <?php endif; ?>
@@ -57,12 +57,20 @@ function hasPermission($url) {
                         $homepage = strtolower($usertype);
                         if (isset($display_name) && !empty($display_name)) :
                             ?>
-                            <p class="navbar-text">Logged as 
-                                <a href="<?php echo base_url() . $homepage; ?>">
+                            <p class="navbar-text">
+                                <a>
                                     <span class="display-name"><?php echo $display_name; ?></span>
                                 </a>
                             </p>
-                            <li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="<?php echo base_url(); ?>user/editProfile">Edit Profile</a></li>
+                                    <li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
+                                </ul>
+                            </li>
+
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -78,7 +86,7 @@ function hasPermission($url) {
             <footer>
                 <hr/>
                 <p class="text-center">
-                    <small>&COPY; Copyright 2017</small>
+                    <small>&COPY; Copyright 2017 Developed by Progex Technologies</small>
                 </p>
             </footer>
         </div>

@@ -14,11 +14,11 @@ class user_model extends CI_Model {
         return FALSE;
     }
 
-    public function insert_user($userData) {
+    public function insertUser($userData) {
         $this->db->insert('user', $userData);
      }
 
-    public function get_user_by_id($user_id) {
+    public function getUserById($user_id) {
         $this->db->where('id', $user_id);
         $result = $this->db->get('user');
 

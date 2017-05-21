@@ -8,6 +8,12 @@ class User extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
     
+    public function editProfile(){
+        $this->load->model('user_model');
+         $data['main_content'] = "edit_user_view";
+        $this->load->view("layouts/main", $data);
+    }
+    
     public function logout() {
         $this->session->unset_userdata('user_id');
         $this->session->unset_userdata('username');
@@ -27,7 +33,7 @@ class User extends CI_Controller {
         $password = md5($this->input->post('password'));
         $currentUser = $this->user_model->authenticate($uName, $password);
         if ($currentUser) {
-            $role = $this->role_model->get_role_by_id($currentUser->roleId);
+            $role = $this->role_model->getRoleById($currentUser->roleId);
             if ($role) {
                 $data['main_content'] = "home_view";
                 $this->set_session_user($currentUser, $role);
@@ -45,16 +51,9 @@ class User extends CI_Controller {
     }
 
     public function view_profile($userId) {
-        $this->load->model('user_model');
-        $this->load->model('task_model');
-        $this->load->model('skill_model');
-        
+        $this->load->model('user_model');        
         $uId = base64_decode(urldecode($userId));
-        $result = $this->task_model->getAverageUserRating($uId);
-        foreach($result as &$value)
-        {
-             $data['rating']  = ceil($value['AvgRating']);
-        }
+        
         $data['userId'] = $userId;
         $data['main_content'] = "user_profile";
         $this->load->view("layouts/main", $data);
@@ -67,7 +66,7 @@ class User extends CI_Controller {
             $data['login_errors'] = 'Old password is incorrect';
         }
 
-        $this->user_model->update_user_profile();
+        $this->user_model->updateUserProfile();
 
         $data['main_content'] = "user_profile";
         $this->load->view("layouts/main", $data);
@@ -101,7 +100,7 @@ class User extends CI_Controller {
             'uName' => $this->input->post('uName')
         );
 
-        $this->user_model->insert_user($userData);
+        $this->user_model->insertUser($userData);
         $data['main_content'] = "home_view";
         $this->load->view("layouts/main", $data);  
     }
