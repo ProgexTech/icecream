@@ -17,6 +17,7 @@ class order extends CI_Controller {
             'orderNo' => $this->input->post('orderNo'),
             'field1' => $this->input->post('field1'),
             'field2' => $this->input->post('field2'),
+            'qty' => $this->input->post('qty'),
             'userId' => $this->session->userdata('user_id')
         );
 

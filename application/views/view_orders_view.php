@@ -7,6 +7,7 @@
         <th>Date</th>
         <th>Company</th>
         <th>Country</th>
+        <th>Quantity</th>
         <th>Field1</th>
         <th>Field2</th>
         <th>Placed By</th>
@@ -25,6 +26,7 @@
                         <td><?php echo $order['date']; ?></td>
                         <td><?php echo $order['company']; ?></td>
                         <td><?php echo $order['country']; ?></td>
+                        <td><?php echo $order['qty']; ?></td>
                         <td><?php echo $order['field1']; ?></td>
                         <td><?php echo $order['field2']; ?></td>
                         <td><?php 
