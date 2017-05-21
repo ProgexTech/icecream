@@ -20,7 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-            $data['main_content'] = "login";
+            $data['main_content'] = "login_view";
             $this->load->view("layouts/main", $data);
 	}
 }

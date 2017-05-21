@@ -1,0 +1,92 @@
+#main-div {
+    
+}
+
+#nav-div {
+    
+}
+
+#content-div {
+    
+}
+
+#footer-div {
+
+}
+
+.navbar {
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    min-height:40px !important;
+}
+
+.navbar-brand {
+    padding-top: 5px;
+    height: 40px;
+}
+
+.navbar-nav > li > a {
+    padding-top:10px !important; 
+    padding-bottom:0 !important;
+    height: 40px;
+}
+
+.navbar-right {
+    height: 40px;
+}
+
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0px;
+}
+
+.navbar-text {
+    padding-top:0px !important; 
+    padding-bottom:0px !important;
+    margin-top: 10px;
+}
+
+.display-name {
+    color : #66afe9;
+    font-style: italic;
+}
+
+#content-div {
+    padding: 5px 15px 5px 15px;
+}
+
+#login-form {
+    width: 400px;
+    margin: 0 auto;
+}
+
+#additem-form, #updateitem-form, #additemcategory-form,
+#updateitemcategory-form, #additemprice-form, #updateitemprice-form,
+#addstockitem-form, #updatestockitem-form {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#data {
+    width: 90%;
+    position: absolute;
+    background-color: white;
+}
+
+#addbillitem-form-wrapper {
+    width: 90%;
+}
+
+.col-mini, .col-mini input {
+    width: 60px;
+}
+
+.col-normal, .col-normal input {
+    width: 120px;
+}
+
+.bigfont {
+    font-weight: bold;
+    font-size: 18px;
+}
+

@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <form method="post" action="<?php echo base_url(); ?>user/authenticate">
             <table align="center">
                 <tr>
-                    <td>username :</td>
+                    <td>Username :</td>
                     <td><input type="text" name="uName"/></td>
                 </tr>
                  <tr>

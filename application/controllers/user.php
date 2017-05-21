@@ -1,8 +1,13 @@
 <?php
 
 class User extends CI_Controller {
-
   
+    public function register(){
+        $this->load->model('role_model');
+        $data['main_content'] = "user_registration_view";
+        $this->load->view("layouts/main", $data);
+    }
+    
     public function logout() {
         $this->session->unset_userdata('user_id');
         $this->session->unset_userdata('username');
@@ -29,12 +34,12 @@ class User extends CI_Controller {
 		$this->load->view("layouts/main", $data);
             } else {
                 $data['login_errors'] = 'Invalid user. Please contact administrator';
-                $data['main_content'] = "welcome_view";
+                $data['main_content'] = "login_view";
 		$this->load->view("layouts/main", $data);
             }
         } else {
             $data['login_errors'] = 'Login failed. Please enter valid username and password';
-            $data['main_content'] = "welcome_view";
+            $data['main_content'] = "login_view";
             $this->load->view("layouts/main", $data);
         }
     }
@@ -81,13 +86,22 @@ class User extends CI_Controller {
         $this->session->set_userdata($userData);
         $user_page = str_replace(' ', '', strtolower($role->name)); // This will load the usertype controller
 
-        //redirect(base_url() . $user_page);
-        //redirect(base_url());
     }
     
     public function addUser(){
         $this->load->model('user_model');
-        $this->user_model->insert_user();
+        $userData = array(
+            'email' => $this->input->post('email'),
+            'password' => md5($this->input->post('password')),
+            'roleId' => $this->input->post('role'),
+            'name' => $this->input->post('name'),
+            'nic' => $this->input->post('nic'),
+            'phone' => $this->input->post('phone'),
+            'address' => $this->input->post('address'),
+            'uName' => $this->input->post('uName')
+        );
+
+        $this->user_model->insert_user($userData);
         $data['main_content'] = "home_view";
         $this->load->view("layouts/main", $data);  
     }
