@@ -26,7 +26,7 @@ class User extends CI_Controller {
         redirect(base_url());
     }
 
-    public function authenticate() {
+    public function login() {
         $this->load->model('user_model');
         $this->load->model('role_model');
         $uName = $this->input->post('uName');
