@@ -31,4 +31,11 @@ class View extends CI_Controller {
         $data['main_content'] = "view_orders_view";
         $this->load->view("layouts/main", $data); 
     }
+    
+    public function editOrder($orderId){
+        $this->load->model('order_model');
+        $data['orderId'] = $orderId;
+        $data['main_content'] = 'edit_order_view';
+        $this->load->view("layouts/main", $data); 
+    }
 }
