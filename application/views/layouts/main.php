@@ -36,8 +36,8 @@ function hasPermission($url) {
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Orders<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>order">Add Order</a></li>
-                                        <li><a href="<?php echo base_url(); ?>order/viewOrders">View Orders</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/placeOrder">Add Order</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewOrders">View Orders</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -45,7 +45,7 @@ function hasPermission($url) {
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Users<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>user/register">Add User</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/registerUser">Add User</a></li>
 
                                     </ul>
                                 </li>
@@ -67,7 +67,7 @@ function hasPermission($url) {
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
 
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>user/editProfile">Edit Profile</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/editProfile">Edit Profile</a></li>
                                         <li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
                                     </ul>
                                 </li>

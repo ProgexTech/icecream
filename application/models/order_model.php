@@ -6,8 +6,8 @@ class order_model extends CI_Model {
         $this->db->insert('order', $orderData);
     }
     
-    public function getAllOrders(){
-        $query = $this->db->query("SELECT * FROM `order`");
+    public function getAllOrdersByDecendingOder(){
+        $query = $this->db->query("SELECT * FROM `order` ORDER BY date desc");
         $ret = $query->result_array();
         return $ret;
     }

@@ -1,11 +1,5 @@
 <?php
 class order extends CI_Controller {
-
-    public function index(){
-        $this->load->model('order_model');
-        $data['main_content'] = "add_order_view";
-        $this->load->view("layouts/main", $data);
-    }
     
     public function addOrder(){
         $this->load->model('order_model');
@@ -24,13 +18,5 @@ class order extends CI_Controller {
         $this->order_model->insertOrder($orderData);
         $data['main_content'] = "home_view";
         $this->load->view("layouts/main", $data);  
-    }
-    
-    public function viewOrders(){
-        $this->load->model('order_model');
-        $this->load->model('user_model');
-        
-        $data['main_content'] = "view_orders_view";
-        $this->load->view("layouts/main", $data); 
     }
 }

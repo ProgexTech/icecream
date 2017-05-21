@@ -15,7 +15,7 @@
         </thead>
         <tbody>
             <?php
-            $allOrders = $this->order_model->getAllOrders();
+            $allOrders = $this->order_model->getAllOrdersByDecendingOder();
             if ($allOrders):
                 foreach ($allOrders as $order):
                     $id = $order['id'];
@@ -34,10 +34,12 @@
                         echo $user->name;
                         ?></td>
                         <td>
+                            <?php if($order['status'] === '0') {?>
                             <a class="btn btn-success btn-xs" role="button"
                                        href="<?php echo base_url(); ?>order/edit/<?php echo urlencode(base64_encode($order['id']));?>">Edit</a>
                             <a class="btn btn-warning btn-xs" role="button"
                                        href="<?php echo base_url(); ?>order/cancel/<?php echo urlencode(base64_encode($order['id']));?>">Cancel</a>
+                            <?php } ?>
                         </td>
                     </tr>
                     <?php

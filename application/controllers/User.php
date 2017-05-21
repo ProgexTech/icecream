@@ -1,13 +1,7 @@
 <?php
 
 class User extends CI_Controller {
-  
-    public function register(){
-        $this->load->model('role_model');
-        $data['main_content'] = "user_registration_view";
-        $this->load->view("layouts/main", $data);
-    }
-    
+      
     public function editProfile(){
         $this->load->model('user_model');
          $data['main_content'] = "edit_user_view";
