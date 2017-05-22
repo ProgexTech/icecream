@@ -76,7 +76,7 @@
     <div id='TextBoxesGroup'>
         <div id="TextBoxDiv1">
              <input type="hidden" id="count" value="0" name="count">
-            <label>Container #1 (Quantity): </label><input name="container[]" type='number' id='container1' >
+            <label>Container #1 (Quantity): </label><input name="container1" type='number' id='container1' >
             <input type='button' value='Add Button' id='addButton' class="btn btn-primary">
             <input type='button' value='Remove Button' id='removeButton' class="btn btn-primary">
         </div>
