@@ -7,13 +7,19 @@ class order_model extends CI_Model {
     }
     
     public function getAllOrdersByDecendingOder(){
-        $query = $this->db->query("SELECT * FROM `order` ORDER BY date desc");
+        $query = $this->db->query("SELECT * FROM `order` ORDER BY createdDate desc");
         $ret = $query->result_array();
         return $ret;
     }
     
     public function getOrderById($orderId){
        $query = $this->db->query("SELECT * FROM `order` WHERE id = ".$orderId);
+        $ret = $query->result_array();
+        return $ret; 
+    }
+    
+    public function getOrderByOrderNumber($orderNo){
+       $query = $this->db->query("SELECT * FROM `order` WHERE orderNo = ".$orderNo);
         $ret = $query->result_array();
         return $ret; 
     }
@@ -37,6 +43,10 @@ class order_model extends CI_Model {
 
         $this->db->where($condition);
         $this->db->update('order', $data);
+    }
+    
+    public function insertToOrderAudit($auditData){
+        $this->db->insert('orderaudit', $auditData);
     }
 }
 

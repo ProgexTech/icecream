@@ -38,4 +38,9 @@ class View extends CI_Controller {
         $data['main_content'] = 'edit_order_view';
         $this->load->view("layouts/main", $data); 
     }
+    
+    public function addShipmentView(){
+        $data['main_content'] = 'add_shipment_data_view';
+        $this->load->view("layouts/main", $data); 
+    }
 }

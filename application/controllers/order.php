@@ -12,7 +12,7 @@ class order extends CI_Controller {
             'field1' => $this->input->post('field1'),
             'field2' => $this->input->post('field2'),
             'qty' => $this->input->post('qty'),
-            'userId' => $this->session->userdata('user_id')
+            'createdUserId' => $this->session->userdata('user_id')
         );
 
         $this->order_model->insertOrder($orderData);
@@ -32,10 +32,17 @@ class order extends CI_Controller {
             'orderNo' => $this->input->post('orderNo'),
             'field1' => $this->input->post('field1'),
             'field2' => $this->input->post('field2'),
-            'qty' => $this->input->post('qty'),
-            'userId' => $this->session->userdata('user_id')
+            'qty' => $this->input->post('qty')
         );
+         
+         $orderAuditData = array(
+             'orderId' => $oId,
+             'editedUserId' => $this->session->userdata('user_id'),
+             'editedContent' =>json_encode($orderData)
+         );
+         
         $this->order_model->updateOrder($oId, $orderData);
+        $this->order_model->insertToOrderAudit($orderAuditData);
         
         $data['main_content'] = "view_orders_view";
         $this->load->view("layouts/main", $data);   

@@ -4,7 +4,7 @@
         <thead>
         <th>Order No</th>
         <th>Order Ref</th>
-        <th>Date</th>
+        <th>Created Date</th>
         <th>Company</th>
         <th>Country</th>
         <th>Quantity</th>
@@ -23,14 +23,14 @@
                     <tr>
                         <td><?php echo $order['orderNo']; ?></td>
                         <td><?php echo $order['refNo']; ?></td>
-                        <td><?php echo $order['date']; ?></td>
+                        <td><?php echo $order['createdDate']; ?></td>
                         <td><?php echo $order['company']; ?></td>
                         <td><?php echo $order['country']; ?></td>
                         <td><?php echo $order['qty']; ?></td>
                         <td><?php echo $order['field1']; ?></td>
                         <td><?php echo $order['field2']; ?></td>
                         <td><?php 
-                        $user = $this->user_model->getUserById($order['userId']);
+                        $user = $this->user_model->getUserById($order['createdUserId']);
                         echo $user->name;
                         ?></td>
                         <td>
