@@ -90,7 +90,7 @@ function hasPermission($url) {
             <footer>
                 <hr/>
                 <p class="text-center">
-                    <small>&COPY; Copyright 2017 Developed by Progex Technologies</small>
+                    <small>&COPY; Copyright 2017 | Powered by Progex Technologies</small>
                 </p>
             </footer>
         </div>

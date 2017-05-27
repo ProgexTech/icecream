@@ -8,8 +8,12 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-    public function profile($user_id) {
-        echo "Profile";
+    public function editProfile() {
+        $this->load->model('user_model');
+        //$uId = $this->session->userdata('user_id');
+        //$data['userId'] = base64_encode(urlencode($uId));
+        $data['main_content'] = "edit_user_view";
+        $this->load->view("layouts/main", $data);
     }
 
     public function registerUser(){
