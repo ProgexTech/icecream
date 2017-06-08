@@ -1,6 +1,6 @@
 <?php
 
-class user_model extends CI_Model {
+class User_model extends CI_Model {
 
     public function authenticate($uName, $password) {
         $this->db->where('uName', $uName);

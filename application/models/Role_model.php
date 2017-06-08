@@ -1,6 +1,6 @@
 <?php
 
-class role_model extends CI_Model {
+class Role_model extends CI_Model {
 
     public function getRoleById($role_id) {
         $this->db->where('id', $role_id);

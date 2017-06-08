@@ -1,5 +1,5 @@
 <?php
-class order extends CI_Controller {
+class Order extends CI_Controller {
     
     public function addOrder(){
         $this->load->model('order_model');

@@ -1,6 +1,6 @@
 <?php
 
-class shipment extends CI_Controller {
+class Shipment extends CI_Controller {
 
     public function addShipment() {
         $this->load->model('shipment_model');
