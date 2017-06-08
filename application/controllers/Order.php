@@ -1,11 +1,5 @@
 <?php
 class order extends CI_Controller {
-
-    public function index(){
-        $this->load->model('order_model');
-        $data['main_content'] = "add_order_view";
-        $this->load->view("layouts/main", $data);
-    }
     
     public function addOrder(){
         $this->load->model('order_model');
@@ -18,7 +12,7 @@ class order extends CI_Controller {
             'field1' => $this->input->post('field1'),
             'field2' => $this->input->post('field2'),
             'qty' => $this->input->post('qty'),
-            'userId' => $this->session->userdata('user_id')
+            'createdUserId' => $this->session->userdata('user_id')
         );
 
         $this->order_model->insertOrder($orderData);
@@ -26,9 +20,39 @@ class order extends CI_Controller {
         $this->load->view("layouts/main", $data);  
     }
     
-    public function viewOrders(){
-        $this->load->model('order_model');
-        $this->load->model('user_model');
+    public function edit(){
+       $this->load->model('order_model');
+       $this->load->model('user_model');
+       
+        $oId = base64_decode(urldecode($this->input->post('orderId')));
+         $orderData = array(
+            'refNo' => $this->input->post('refNo'),
+            'country' => $this->input->post('country'),
+            'company' => $this->input->post('company'),
+            'orderNo' => $this->input->post('orderNo'),
+            'field1' => $this->input->post('field1'),
+            'field2' => $this->input->post('field2'),
+            'qty' => $this->input->post('qty')
+        );
+         
+         $orderAuditData = array(
+             'orderId' => $oId,
+             'editedUserId' => $this->session->userdata('user_id'),
+             'editedContent' =>json_encode($orderData)
+         );
+         
+        $this->order_model->updateOrder($oId, $orderData);
+        $this->order_model->insertToOrderAudit($orderAuditData);
+        
+        $data['main_content'] = "view_orders_view";
+        $this->load->view("layouts/main", $data);   
+    }
+    
+    public function cancel($orderId){
+       $this->load->model('order_model');
+       $this->load->model('user_model');
+       
+        $this->order_model->updateOrderStatus(base64_decode(urldecode($orderId)), '1');
         
         $data['main_content'] = "view_orders_view";
         $this->load->view("layouts/main", $data); 

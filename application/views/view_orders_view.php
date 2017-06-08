@@ -4,7 +4,7 @@
         <thead>
         <th>Order No</th>
         <th>Order Ref</th>
-        <th>Date</th>
+        <th>Created Date</th>
         <th>Company</th>
         <th>Country</th>
         <th>Quantity</th>
@@ -15,7 +15,7 @@
         </thead>
         <tbody>
             <?php
-            $allOrders = $this->order_model->getAllOrders();
+            $allOrders = $this->order_model->getAllOrdersByDecendingOder();
             if ($allOrders):
                 foreach ($allOrders as $order):
                     $id = $order['id'];
@@ -23,21 +23,23 @@
                     <tr>
                         <td><?php echo $order['orderNo']; ?></td>
                         <td><?php echo $order['refNo']; ?></td>
-                        <td><?php echo $order['date']; ?></td>
+                        <td><?php echo $order['createdDate']; ?></td>
                         <td><?php echo $order['company']; ?></td>
                         <td><?php echo $order['country']; ?></td>
                         <td><?php echo $order['qty']; ?></td>
                         <td><?php echo $order['field1']; ?></td>
                         <td><?php echo $order['field2']; ?></td>
                         <td><?php 
-                        $user = $this->user_model->getUserById($order['userId']);
+                        $user = $this->user_model->getUserById($order['createdUserId']);
                         echo $user->name;
                         ?></td>
                         <td>
+                            <?php if($order['status'] === '0') {?>
                             <a class="btn btn-success btn-xs" role="button"
-                                       href="<?php echo base_url(); ?>order/edit/<?php echo urlencode(base64_encode($order['id']));?>">Edit</a>
+                                       href="<?php echo base_url(); ?>view/editOrder/<?php echo urlencode(base64_encode($order['id']));?>">Edit</a>
                             <a class="btn btn-warning btn-xs" role="button"
                                        href="<?php echo base_url(); ?>order/cancel/<?php echo urlencode(base64_encode($order['id']));?>">Cancel</a>
+                            <?php } ?>
                         </td>
                     </tr>
                     <?php

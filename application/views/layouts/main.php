@@ -36,8 +36,9 @@ function hasPermission($url) {
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Orders<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>order">Add Order</a></li>
-                                        <li><a href="<?php echo base_url(); ?>order/viewOrders">View Orders</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/placeOrder">Add Order</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewOrders">View Orders</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/addShipmentView">Add Shipment</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -45,7 +46,7 @@ function hasPermission($url) {
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Users<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>user/register">Add User</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/registerUser">Add User</a></li>
 
                                     </ul>
                                 </li>
@@ -67,7 +68,7 @@ function hasPermission($url) {
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#"><b class="caret"></b></a>
 
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>user/editProfile">Edit Profile</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/editProfile">Edit Profile</a></li>
                                         <li><a href="<?php echo base_url(); ?>user/logout">Logout</a></li>
                                     </ul>
                                 </li>
@@ -89,11 +90,12 @@ function hasPermission($url) {
             <footer>
                 <hr/>
                 <p class="text-center">
-                    <small>&COPY; Copyright 2017 Developed by Progex Technologies</small>
+                    <small>&COPY; Copyright 2017 | Powered by Progex Technologies</small>
                 </p>
             </footer>
         </div>
 
+        <!--<script src="<?ph echo base_url(); ?>assets/js/jquery.min.js"></script>-->
         <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>

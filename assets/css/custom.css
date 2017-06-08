@@ -63,9 +63,7 @@
     margin: 0 auto;
 }
 
-#additem-form, #updateitem-form, #additemcategory-form,
-#updateitemcategory-form, #additemprice-form, #updateitemprice-form,
-#addstockitem-form, #updatestockitem-form {
+#add-order-form, #add-shipment-form, #add-user-form {
     width: 600px;
     margin: 0 auto;
 }
