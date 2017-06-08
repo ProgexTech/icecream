@@ -32,9 +32,9 @@ function hasPermission($url) {
                     <div id="nav-div">
                         <a class="navbar-brand" href="<?php echo base_url(); ?>"><img alt="Brand" src="<?php echo base_url(); ?>assets/images/logo.png"></a>
                         <ul class="nav navbar-nav">
-                            <?php if (hasPermission("Manage Orders")) : ?>
+                            <?php if (hasPermission("Orders")) : ?>
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Orders<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Orders<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>view/placeOrder">Add Order</a></li>
                                         <li><a href="<?php echo base_url(); ?>view/viewOrders">View Orders</a></li>
@@ -42,11 +42,29 @@ function hasPermission($url) {
                                     </ul>
                                 </li>
                             <?php endif; ?>
-                            <?php if (hasPermission("Manage Users")) : ?>
+                            <?php if (hasPermission("Purchases")) : ?>
                                 <li class="dropdown">
-                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Users<b class="caret"></b></a>
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Purchases<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>view/registerUser">Add User</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/placePO">Add Purchase Order</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewPOs">View Purchase Orders</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (hasPermission("Customers")) : ?>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Customers<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>view/addCustomer">Add New Customer</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewCustomers">View Customers</a></li>
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (hasPermission("Users")) : ?>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>view/registerUser">Add New User</a></li>
 
                                     </ul>
                                 </li>

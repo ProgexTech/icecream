@@ -29,9 +29,10 @@ class User extends CI_Controller {
         if ($currentUser) {
             $role = $this->role_model->getRoleById($currentUser->roleId);
             if ($role) {
-                $data['main_content'] = "home_view";
+                //$data['main_content'] = "home_view";
                 $this->set_session_user($currentUser, $role);
-		$this->load->view("layouts/main", $data);
+		//$this->load->view("layouts/main", $data);
+                redirect('/');
             } else {
                 $data['login_errors'] = 'Invalid user. Please contact administrator';
                 $data['main_content'] = "login_view";
