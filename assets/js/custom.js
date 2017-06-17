@@ -6,47 +6,38 @@
 
 $(document).ready(function () {
 
-    var counter = 2;
+    var containerCounter = 1;
 
     $("#addButton").click(function () {
 
-        if (counter > 20) {
+        if (containerCounter > 20) {
             alert("Only 20 containers are allowed");
             return false;
         }
 
-        var newTextBoxDiv = $(document.createElement('div'))
-                .attr("id", 'TextBoxDiv' + counter);
-
-        newTextBoxDiv.after().html('<label>Container #' + counter + ' (Quantity) : </label>' +
-                '<input type="text" name="container' + counter +
-                '" id="container' + counter + '" value="" >');
+        var newTextBoxDiv = $(document.createElement('div')).attr("id", 'TextBoxDiv' + containerCounter);
+        
+        var removeButton = document.createElement('input');
+        removeButton.setAttribute("class", 'btn btn-danger btn-sm');
+        removeButton.type = 'button';
+        removeButton.value = 'Remove';
+        removeButton.onclick = function() {
+            var p = $(this).parent().parent();
+            $('#' + p.attr('id')).remove();
+        };
+        
+        var holderDiv = document.createElement('div');
+        holderDiv.innerHTML = '<div class="form-inline col-xs-8"><label>Container #' + containerCounter + ' (Quantity) : </label>' +
+                '&nbsp <input type="text" class="form-control input-sm" name="container' + containerCounter +
+                '" id="container' + containerCounter + '" value="" ></div>';
+        
+        newTextBoxDiv.append(holderDiv);
+        holderDiv.append(removeButton);
 
         newTextBoxDiv.appendTo("#TextBoxesGroup");
 
-
-        counter++;
-        $('#count').val(counter);
+        containerCounter++;
+        $('#count').val(containerCounter);
     });
-
-    $("#removeButton").click(function () {
-        if (counter == 1) {
-            alert("No more container to remove");
-            return false;
-        }
-
-        counter--;
-
-        $("#TextBoxDiv" + counter).remove();
-
-    });
-
-    $("#getButtonValue").click(function () {
-
-        var msg = '';
-        for (i = 1; i < counter; i++) {
-            msg += "\n Container #" + i + " : " + $('#container' + i).val();
-        }
-        alert(msg);
-    });
+    
 });

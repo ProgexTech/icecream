@@ -20,10 +20,18 @@ function hasPermission($url) {
     <head>
         <meta charset="utf-8">
         <title>Super Tech Cement | Order Management</title>
-        <link href="<?php echo base_url(); ?>assets/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
+        
+         <link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" />
+        <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<?php echo base_url(); ?>assets/js/custom.js" type="text/javascript"></script>
+        
+<!--        <link href="<php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
+        <link href="<php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="<php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" />-->
     </head>
     <body>
         <div id="main-div">
@@ -38,7 +46,7 @@ function hasPermission($url) {
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>view/placeOrder">Add Order</a></li>
                                         <li><a href="<?php echo base_url(); ?>view/viewOrders">View Orders</a></li>
-                                        <li><a href="<?php echo base_url(); ?>view/addShipmentView">Add Shipment</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/addShipment">Add Shipment</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -114,9 +122,9 @@ function hasPermission($url) {
         </div>
 
         <!--<script src="<?ph echo base_url(); ?>assets/js/jquery.min.js"></script>-->
-        <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>assets/js/custom.js" type="text/javascript"></script>
+<!--        <script src="<php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
+        <script src="<php echo base_url(); ?>assets/js/jquery-ui.js" type="text/javascript"></script>
+        <script src="<php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="<php echo base_url(); ?>assets/js/custom.js" type="text/javascript"></script>-->
     </body>
 </html>
