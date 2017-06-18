@@ -2,6 +2,7 @@
 
 class View extends CI_Controller {
 
+    // User
     public function login() {
         $this->load->model('role_model');
         $data['main_content'] = "user/login";
@@ -22,6 +23,7 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
+    // Stock Order
     public function placeOrder() {
         $this->load->model('order_model');
         $data['main_content'] = "order/add_order";
@@ -43,6 +45,7 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
+    // Shipment
     public function addShipment($orderId = NULL) {
         $this->load->model('order_model');
         $data['orderId'] = $orderId;
@@ -50,9 +53,9 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-    // purchase orders
-    public function placePO() {
-        $data['main_content'] = "po/place_po";
+    // Purchase Order
+    public function addPO() {
+        $data['main_content'] = "po/add_po";
         $this->load->view("layouts/main", $data);
     }
 
@@ -61,7 +64,7 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-    // customers
+    // Customers
     public function addCustomer() {
         $data['main_content'] = "customer/add_customer";
         $this->load->view("layouts/main", $data);

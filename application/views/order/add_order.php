@@ -43,7 +43,11 @@
             <div class="form-group">
                 <label>Company</label>
                 <input class="form-control" type="text" name="company" />
-            </div>            
+            </div>  
+            <div class="form-group">
+                <label>Vessel ID(ship)</label>
+                <input class="form-control" type="text" name="company" />
+            </div> 
             <div class="form-group">
                 <label>Quantity</label>
                 <input class="form-control" type="number" name="qty" />
