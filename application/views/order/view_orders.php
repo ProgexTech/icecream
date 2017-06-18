@@ -34,7 +34,7 @@
                         <td>
                             <?php if ($order['status'] === '0') { ?>
                                 <a class="btn btn-primary btn-xs" role="button"
-                                   href="<?php echo base_url(); ?>view/addShipment/<?php echo urlencode(base64_encode($order['id'])); ?>">Add Shp</a>
+                                   href="<?php echo base_url(); ?>view/viewShipments/<?php echo urlencode(base64_encode($order['id'])); ?>">Shipments</a>
                                 <a class="btn btn-warning btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/editOrder/<?php echo urlencode(base64_encode($order['id'])); ?>">Edit</a>
                                 <a class="btn btn-danger btn-xs" role="button"

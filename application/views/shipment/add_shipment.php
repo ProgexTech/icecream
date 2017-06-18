@@ -29,6 +29,7 @@ if (isset($orderId)) {
         <?php endif; ?>
 
         <form method="post" action="<?php echo base_url(); ?>shipment/add">
+            
             <div class="form-group">
                 <label>Order No</label>
                 <?php if (isset($order)) : ?>
@@ -38,12 +39,12 @@ if (isset($orderId)) {
                 <?php endif; ?>
             </div>
             <div class="form-group">
-                <label>Shipping Id</label>
-                <input class="form-control" type="text" name="shippingId" />
+                <label>Shipping No</label>
+                <input class="form-control" type="text" name="shippingNo" />
             </div>
             <div class="form-group">
                 <label>Date</label>
-                <input class="form-control" type="date" name="date" id="shipmentDate" />
+                <input class="form-control" type="date" name="shipmentDate" id="shipmentDate" />
             </div>
             <div class="form-group">
                 <label>Manufacturing Week</label>
