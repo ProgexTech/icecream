@@ -53,7 +53,7 @@ if (isset($shipmentId)) {
                 <?php foreach ($allContainers as $container) : ?>
                     <tr>
                         <td>
-                            <a class="btn btn-default btn-xs" href="<?php echo base_url(); ?>view/viewShipment/<?php echo urlencode(base64_encode($shipment->id)); ?>">
+                            <a class="btn btn-default linkButtonColor btn-xs" href="<?php echo base_url(); ?>view/viewShipment/<?php echo urlencode(base64_encode($shipment->id)); ?>">
                             <?php echo $shipment->shippingNo; ?>
                             </a>                            
                         </td>

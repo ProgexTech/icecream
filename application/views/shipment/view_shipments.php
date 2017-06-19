@@ -61,7 +61,7 @@ if (isset($orderId)) {
                 <?php foreach ($allShipments as $shipment) : ?>
                     <tr>
                         <td>
-                            <a class="btn btn-default btn-xs" href="<?php echo base_url(); ?>view/viewOrder/<?php echo urlencode(base64_encode($order->id)); ?>">
+                            <a class="btn btn-default linkButtonColor btn-xs" href="<?php echo base_url(); ?>view/viewOrder/<?php echo urlencode(base64_encode($order->id)); ?>">
                             <?php echo $order->orderNo; ?>
                             </a>
                         </td>
