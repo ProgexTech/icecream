@@ -52,7 +52,11 @@ if (isset($shipmentId)) {
             <?php if ($shipment && $allContainers) : ?>
                 <?php foreach ($allContainers as $container) : ?>
                     <tr>
-                        <td><?php echo $shipment->shippingNo; ?></td>
+                        <td>
+                            <a class="btn btn-default btn-xs" href="<?php echo base_url(); ?>view/viewShipment/<?php echo urlencode(base64_encode($shipment->id)); ?>">
+                            <?php echo $shipment->shippingNo; ?>
+                            </a>                            
+                        </td>
                         <td><?php echo $container->contCode; ?></td>
                         <td><?php echo $container->mWeek; ?></td>
                         <td><?php echo $container->qty; ?></td>                    

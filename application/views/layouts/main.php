@@ -46,6 +46,7 @@ function hasPermission($url) {
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>view/placeOrder">Add Order</a></li>
                                         <li><a href="<?php echo base_url(); ?>view/viewOrders">View Orders</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewStock">View Stock</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
@@ -53,7 +54,7 @@ function hasPermission($url) {
                                 <li class="dropdown">
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Purchases<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="<?php echo base_url(); ?>view/placePO">Add Purchase Order</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/addPO">Add Purchase Order</a></li>
                                         <li><a href="<?php echo base_url(); ?>view/viewPOs">View Purchase Orders</a></li>
                                     </ul>
                                 </li>

@@ -1,16 +1,3 @@
-<script type="text/javascript">
-
-    $(function () {
-        $("#shipmentDate").datepicker({
-            dateFormat: "yy-mm-dd",
-            yearRange: "c-90:c",
-            changeMonth: true,
-            changeYear: true
-        });
-    });
-
-</script>
-
 <?php
 if (isset($orderId)) {
     $order = $this->order_model->getOrderById(base64_decode(urldecode($orderId)));
@@ -22,28 +9,25 @@ if (isset($orderId)) {
 ?>
 
 <div>
-    <legend>Add Shipment</legend>
-    <form class="form-inline" method="post" action="<?php echo base_url(); ?>shipment/add">
-        <input type="hidden" name="orderId" value="<?php if ($order) {echo $order->id;} else {echo -1;} ?>" />
-        <div class="form-group">
-            <label for="orderNo">Order No</label>
-            <?php if (isset($order)) : ?>
-                <input type="text" class="form-control" id="orderNo" name="orderNo" value="<?php echo $order->orderNo; ?>" readonly="readonly">
-            <?php endif; ?>
-        </div>
-        &nbsp;
-        <div class="form-group">
-            <label for="shippingNo">Shipping No</label>
-            <input type="text" class="form-control" id="shippingNo" name="shippingNo">
-        </div>
-        &nbsp;
-        <div class="form-group">
-            <label for="shipmentDate">Date</label>
-            <input type="text" class="form-control" id="shipmentDate" name="shipmentDate">
-        </div>
-        &nbsp;
-        <button type="submit" class="btn btn-primary">Add</button>
-    </form>
+    <legend>Order Details</legend>
+    <div class="row">
+        <div class="myp col-md-2 text-right"><strong><em>Order No : </em></strong></div>
+        <div class="myp col-md-4"><?php if ($order) { echo $order->orderNo; } ?></div>
+        <div class="myp col-md-2 text-right"><strong><em>Order Date : </em></strong></div>
+        <div class="myp col-md-4"><?php if ($order) { echo $order->orderDate; } ?></div>
+    </div>
+    <div class="row">
+        <div class="myp col-md-2 text-right"><strong><em>Ref No : </em></strong></div>
+        <div class="myp col-md-4"><?php if ($order) { echo $order->refNo; } ?></div>
+        <div class="myp col-md-2 text-right"><strong><em>Country : </em></strong></div>
+        <div class="myp col-md-4"><?php if ($order) { echo $order->country; } ?></div>
+    </div>    
+    <div class="row">
+        <div class="myp col-md-2 text-right"><strong><em>Quantity : </em></strong></div>
+        <div class="myp col-md-4"><?php if ($order) { echo $order->qty; } ?></div>
+        <div class="myp col-md-2 text-right"><strong><em>Company : </em></strong></div>
+        <div class="myp col-md-4"><?php if ($order) { echo $order->company; } ?></div>
+    </div>
 </div>
 <br/><br/>
 <div>
@@ -60,11 +44,7 @@ if (isset($orderId)) {
             <?php if ($order && $allShipments) : ?>
                 <?php foreach ($allShipments as $shipment) : ?>
                     <tr>
-                        <td>
-                            <a class="btn btn-default btn-xs" href="<?php echo base_url(); ?>view/viewOrder/<?php echo urlencode(base64_encode($order->id)); ?>">
-                            <?php echo $order->orderNo; ?>
-                            </a>
-                        </td>
+                        <td><?php echo $order->orderNo; ?></td>
                         <td><?php echo $shipment->shippingNo; ?></td>
                         <td><?php echo $shipment->shipmentDate; ?></td>
                         <td>TODO</td>                    

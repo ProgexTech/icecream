@@ -44,8 +44,21 @@ class View extends CI_Controller {
         $data['main_content'] = 'order/edit_order';
         $this->load->view("layouts/main", $data);
     }
+    
+    public function viewStock() {
+        $data['main_content'] = 'order/view_stock';
+        $this->load->view("layouts/main", $data);
+    }
 
-    // Shipment
+    public function viewOrder($orderId) {
+        $this->load->model('order_model');
+        $this->load->model('shipment_model');
+        $data['orderId'] = $orderId;
+        $data['main_content'] = 'order/view_order_details';
+        $this->load->view("layouts/main", $data);
+    }
+
+        // Shipment
     public function viewShipments($orderId) {
         $this->load->model('order_model');
         $this->load->model('shipment_model');
@@ -55,7 +68,16 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
     
-    // Container
+    public function viewShipment($shipmentId) {
+        $this->load->model('order_model');
+        $this->load->model('shipment_model');
+        $this->load->model('container_model');
+        $data['shipmentId'] = $shipmentId;
+        $data['main_content'] = 'shipment/view_shipment_details';
+        $this->load->view("layouts/main", $data);
+    }
+
+        // Container
     public function viewContainers($shipmentId) {
         $this->load->model('shipment_model');
         $this->load->model('container_model');        

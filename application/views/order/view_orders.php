@@ -4,7 +4,7 @@
         <thead>
         <th>Date</th>
         <th>Order No</th>
-        <th>Order Ref</th>
+        <th>Ref.No</th>
         <th>Created Date</th>
         <th>Company</th>
         <th>Country</th>
