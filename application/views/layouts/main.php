@@ -21,7 +21,7 @@ function hasPermission($url) {
         <meta charset="utf-8">
         <title>Super Tech Cement | Order Management</title>
         
-         <link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
+        <link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" />
         <script src="<?php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
@@ -121,7 +121,7 @@ function hasPermission($url) {
             </footer>
         </div>
 
-        <!--<script src="<?ph echo base_url(); ?>assets/js/jquery.min.js"></script>-->
+        <!--<script src="<php echo base_url(); ?>assets/js/jquery.min.js"></script>-->
 <!--        <script src="<php echo base_url(); ?>assets/js/jquery.js" type="text/javascript"></script>
         <script src="<php echo base_url(); ?>assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="<php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>

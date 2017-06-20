@@ -2,6 +2,10 @@
 
 class Customer_model extends CI_Model {
 
+    public function insertCustomer($customerData) {
+        $this->db->insert('customer', $customerData);
+    }
+    
     public function getCustomerById($customer_id) {
         $this->db->where('id', $customer_id);
         $result = $this->db->get('customer');

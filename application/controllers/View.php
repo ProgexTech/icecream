@@ -99,13 +99,23 @@ class View extends CI_Controller {
 
     // Customers
     public function addCustomer() {
+        $this->load->model('customer_model');
         $data['main_content'] = "customer/add_customer";
         $this->load->view("layouts/main", $data);
     }
 
     public function viewCustomers() {
+        $this->load->model('customer_model');
         $data['main_content'] = "customer/view_customers";
         $this->load->view("layouts/main", $data);
+    }
+    
+    public function addAddress($customerId) {
+        
+    }
+    
+    public function addVehicle($customerId) {
+        
     }
 
 }
