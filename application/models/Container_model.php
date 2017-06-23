@@ -9,7 +9,7 @@ class Container_model extends CI_Model {
         $this->db->insert('container', $containerData);
         return $this->db->insert_id();
     }
-    
+
     public function getContainerForShipment($shipmentId) {
         $this->db->where('shipmentId', $shipmentId);
         $result = $this->db->get('container');
@@ -19,7 +19,7 @@ class Container_model extends CI_Model {
         }
         return FALSE;
     }
-    
+
     public function isAlreadyExists($contCode, $shipmentId, $mWeek) {
         $this->db->where('contCode', $contCode);
         $this->db->where('shipmentId', $shipmentId);
@@ -27,12 +27,12 @@ class Container_model extends CI_Model {
         $result = $this->db->get('container');
         return ($result->num_rows() != 0);
     }
-    
+
     public function remove($id) {
         $this->db->where('id', $id);
         $this->db->delete('container');
     }
-    
+
     public function getContainerById($id) {
         $this->db->where('id', $id);
         $result = $this->db->get('container');
@@ -42,4 +42,15 @@ class Container_model extends CI_Model {
         }
         return FALSE;
     }
+
+    public function getContainersByShipmentId($shipmentId) {
+        $this->db->where('shipmentId', $shipmentId);
+        $result = $this->db->get('container');
+
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
+
 }
