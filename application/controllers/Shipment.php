@@ -23,5 +23,19 @@ class Shipment extends CI_Controller {
         //$data['main_content'] = "home_view";
         //$this->load->view("layouts/main", $data);
     }
+    
+    public function remove($shipmentId) {
+        $this->load->model('container_model');
+        $this->load->model('shipment_model');
+     
+        $sId = base64_decode(urldecode($shipmentId));
+        $shipment = $this->shipment_model->getShipmentById($sId);
+        $orderId = urlencode(base64_encode($shipment->orderId));
+        $this->shipment_model->remove($sId);
+        $this->container_model->removeContainersBelongToShipment($sId);
+
+         $url = '/view/viewShipments/' . $orderId;
+        redirect($url);
+    }
 
 }

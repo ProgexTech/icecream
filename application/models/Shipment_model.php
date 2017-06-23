@@ -27,4 +27,8 @@ class Shipment_model extends CI_Model {
         return FALSE;
     }
 
+     public function remove($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('shipment');
+    }
 }
