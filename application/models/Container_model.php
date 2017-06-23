@@ -28,4 +28,18 @@ class Container_model extends CI_Model {
         return ($result->num_rows() != 0);
     }
     
+    public function remove($id) {
+        $this->db->where('id', $id);
+        $this->db->delete('container');
+    }
+    
+    public function getContainerById($id) {
+        $this->db->where('id', $id);
+        $result = $this->db->get('container');
+
+        if ($result->num_rows() > 0) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
 }
