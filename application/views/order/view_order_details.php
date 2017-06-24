@@ -47,7 +47,22 @@ if (isset($orderId)) {
                         <td><?php echo $order->orderNo; ?></td>
                         <td><?php echo $shipment->shippingNo; ?></td>
                         <td><?php echo $shipment->shipmentDate; ?></td>
-                        <td>TODO</td>                    
+                                                <td><?php  $allContainers = $this->container_model->getContainersByShipmentId($shipment->id);
+                        if ($allContainers) :
+                            $round = 0;
+                            foreach ($allContainers as $container) :
+                            if($round > 0):
+                                echo ', ';
+                            endif;
+                            echo $container->mWeek;
+                            $round = $round+1;
+                            endforeach;
+                        
+                        else :
+                            echo "N/A";
+                        endif;
+?>
+                        </td>                   
                         <td>
                             <a class="btn btn-primary btn-xs" role="button"
                                href="<?php echo base_url(); ?>view/viewContainers/<?php echo urlencode(base64_encode($shipment->id)); ?>">Containers</a>

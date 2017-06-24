@@ -53,6 +53,7 @@ class View extends CI_Controller {
     public function viewOrder($orderId) {
         $this->load->model('order_model');
         $this->load->model('shipment_model');
+        $this->load->model('container_model');
         $data['orderId'] = $orderId;
         $data['main_content'] = 'order/view_order_details';
         $this->load->view("layouts/main", $data);

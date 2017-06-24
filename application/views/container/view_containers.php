@@ -1,3 +1,15 @@
+<script type="text/javascript">
+
+    $(function () {
+        $("#unloadingDate").datepicker({
+            dateFormat: "yy-mm-dd",
+            yearRange: "c-90:c",
+            changeMonth: true,
+            changeYear: true
+        });
+    });
+
+</script>
 <?php
 if (isset($shipmentId)) {
     $shipment = $this->shipment_model->getShipmentById(base64_decode(urldecode($shipmentId)));
@@ -15,25 +27,30 @@ if (isset($shipmentId)) {
         <div class="form-group">
             <label for="shippingNo">Shipping No</label>
             <?php if (isset($shipment)) : ?>
-                <input type="text" class="form-control" id="shippingNo" name="shippingNo" value="<?php echo $shipment->shippingNo; ?>" readonly="readonly">
+                <input type="text" class="form-control" id="shippingNo" name="shippingNo" value="<?php echo $shipment->shippingNo; ?>" readonly="readonly" size="12px">
             <?php endif; ?>
         </div>
         &nbsp;
         <div class="form-group">
             <label for="contCode">Cont.Code</label>
-            <input type="text" class="form-control" id="contCode" name="contCode">
+            <input type="text" class="form-control" id="contCode" name="contCode" >
         </div>
         &nbsp;
         <div class="form-group">
             <label for="mWeek">Man.Week</label>
-            <input type="text" class="form-control" id="mWeek" name="mWeek">
+            <input type="text" class="form-control" id="mWeek" name="mWeek" size="10px">
         </div>
         &nbsp;
         <div class="form-group">
             <label for="qty">Quantity</label>
-            <input type="text" class="form-control" id="qty" name="qty">
+            <input type="number" class="form-control" id="qty" name="qty" size="8px">
         </div>
-        &nbsp;        
+        &nbsp;   
+        <div class="form-group">
+        <label for="unloadingDate">Unloading Date</label>
+        <input type="text" class="form-control" id="unloadingDate" name="unloadingDate" size="10px">
+        </div>
+        &nbsp;
         <button type="submit" class="btn btn-primary">Add</button>
     </form>
 </div>
@@ -46,6 +63,7 @@ if (isset($shipmentId)) {
         <th>Cont.Code</th>
         <th>Man.Weeks</th>
         <th>Quantity</th>
+        <th>Unloading Date</th>
         <th>Action</th>
         </thead>
         <tbody>
@@ -59,7 +77,8 @@ if (isset($shipmentId)) {
                         </td>
                         <td><?php echo $container->contCode; ?></td>
                         <td><?php echo $container->mWeek; ?></td>
-                        <td><?php echo $container->qty; ?></td>                    
+                        <td><?php echo $container->qty; ?></td> 
+                        <td><?php echo $container->unloadingDate; ?></td>  
                         <td>
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>container/remove/<?php echo urlencode(base64_encode($container->id)); ?>">Remove</a>
