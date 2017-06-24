@@ -5,7 +5,7 @@ class Customer_model extends CI_Model {
     public function insertCustomer($customerData) {
         $this->db->insert('customer', $customerData);
     }
-    
+
     public function getCustomerById($customer_id) {
         $this->db->where('id', $customer_id);
         $result = $this->db->get('customer');
@@ -24,7 +24,7 @@ class Customer_model extends CI_Model {
         }
         return FALSE;
     }
-    
+
     public function getCustomerTypeInfo($customer_type_id) {
         $this->db->where('id', $customer_type_id);
         $result = $this->db->get('customer_type');
@@ -43,9 +43,9 @@ class Customer_model extends CI_Model {
         }
         return FALSE;
     }
-    
+
     public function getCustomerAddressInfo($customer_address_id) {
-        $this->db->where('id', $customer_address_id);
+        $this->db->where('customer_id', $customer_address_id);
         $result = $this->db->get('customer_address');
 
         if ($result->num_rows() != 0) {
@@ -53,7 +53,7 @@ class Customer_model extends CI_Model {
         }
         return FALSE;
     }
-    
+
     public function getAllAddressesForCustomer($customer_id) {
         $this->db->where('customer_id', $customer_id);
         $result = $this->db->get('customer_address');
@@ -62,6 +62,15 @@ class Customer_model extends CI_Model {
             return $result->result();
         }
         return FALSE;
+    }
+
+    public function insertCustomerAddress($customerAddress) {
+        $this->db->insert('customer_address', $customerAddress);
+    }
+    
+    public function removeAddress($id){
+        $this->db->where('id', $id);
+        $this->db->delete('customer_address');
     }
 
 }
