@@ -47,4 +47,31 @@ class Customer extends CI_Controller {
 
         redirect('/view/addAddress/'.$customerId);    
     }
+    
+     public function addVehicle() {
+        $this->load->model('customer_model');
+        
+        $customerId = $this->input->post('customerId');
+        
+        $addressData = array(
+            'customer_id' => base64_decode(urldecode($customerId)),
+            'regNo' => $this->input->post('regNo'),
+            'type' => $this->input->post('type'),
+            'capacity' => $this->input->post('capacity'),
+            'driverName' => $this->input->post('driverName')
+        );
+
+        $this->customer_model->insertCustomerVehicle($addressData);
+
+        redirect('/view/addVehicle/'.$customerId);
+    }
+    
+    public function removeVehicle($vehicleId, $customerId){
+        $this->load->model('customer_model');
+     
+        $id = base64_decode(urldecode($vehicleId));
+        $this->customer_model->removeVehicle($id);
+
+        redirect('/view/addVehicle/'.$customerId);    
+    }
 }

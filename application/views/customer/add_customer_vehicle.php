@@ -5,8 +5,8 @@ if (isset($customerId)) {
 ?>
 
 <div>
-    <legend>Add Address</legend>
-    <form class="form-inline" method="post" action="<?php echo base_url(); ?>customer/addAddress">
+    <legend>Add Vehicle</legend>
+    <form class="form-inline" method="post" action="<?php echo base_url(); ?>customer/addVehicle">
         <input type="hidden" name="customerId" value="<?php if ($customerId) {
     echo $customerId;
 } else {
@@ -20,18 +20,23 @@ if (isset($customerId)) {
         </div>
         &nbsp;
         <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" class="form-control" id="address" name="address">
+            <label for="address">Reg. No</label>
+            <input type="text" class="form-control" id="regNo" name="regNo" size="10px">
         </div>
         &nbsp;
         <div class="form-group">
-            <label for="shipmentDate">Phone (Office)</label>
-            <input type="text" class="form-control" id="phoneOffice" name="phoneOffice">
+            <label for="shipmentDate">Type</label>
+            <input type="text" class="form-control" id="type" name="type">
         </div>
         &nbsp;
         <div class="form-group">
-            <label for="shipmentDate">Phone (Mobile)</label>
-            <input type="text" class="form-control" id="phoneMobile" name="phoneMobile">
+            <label for="shipmentDate">Capacity</label>
+            <input type="text" class="form-control" id="capacity" name="capacity" size="10px">
+        </div>
+        &nbsp;
+        <div class="form-group">
+            <label for="shipmentDate">Driver Name</label>
+            <input type="text" class="form-control" id="driverName" name="driverName">
         </div>
         &nbsp;
         <button type="submit" class="btn btn-primary">Add</button>
@@ -40,30 +45,32 @@ if (isset($customerId)) {
 <br/><br/>
 
 <div id="div-table">
-    <legend>All Addresses</legend>
+    <legend>All Vehicles</legend>
     <table class="table table-striped">
         <thead>
-        <th>Address</th>
-        <th>Phone Office</th>
-        <th>Phone Mobile</th>     
+        <th>Reg. No</th>
+        <th>Type</th>
+        <th>Capacity</th>  
+        <th>Driver</th>     
         <th>Action</th>
         </thead>
         <tbody>
             <?php
-            $allVehicles = $this->customer_model->getAllAddressesForCustomer(base64_decode(urldecode($customerId)));
+            $allVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_decode(urldecode($customerId)));
             if ($allVehicles):
                 foreach ($allVehicles as $address):
                     $id = $address->id;
                     ?>
                     <tr>
-                        <td><?php echo $address->address; ?></td>
-                        <td><?php echo $address->phone_office; ?></td>
-                        <td><?php echo $address->phone_mobile; ?></td>
+                        <td><?php echo $address->regNo; ?></td>
+                        <td><?php echo $address->type; ?></td>
+                        <td><?php echo $address->capacity; ?></td>
+                        <td><?php echo $address->driverName; ?></td>
                         <td>
                             <!---<a class="btn btn-warning btn-xs" role="button"
-                               href="<?php echo base_url(); ?>view/editAddress/<?php //echo urlencode(base64_encode($id)); ?>/<?php //echo $customerId; ?>">Edit</a>-->
+                               href="<?php echo base_url(); ?>view/editVehicle/<?php //echo urlencode(base64_encode($id)); ?>/<?php //echo $customerId; ?>">Edit</a>-->
                             <a class="btn btn-danger btn-xs" role="button"
-                               href="<?php echo base_url(); ?>customer/removeAddress/<?php echo urlencode(base64_encode($id)); ?>/<?php echo $customerId; ?>">Remove</a>
+                               href="<?php echo base_url(); ?>customer/removeVehicle/<?php echo urlencode(base64_encode($id)); ?>/<?php echo $customerId; ?>">Remove</a>
                         </td>
                     </tr>
         <?php

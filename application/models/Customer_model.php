@@ -73,4 +73,22 @@ class Customer_model extends CI_Model {
         $this->db->delete('customer_address');
     }
 
+    public function getAllVehiclesForCustomer($customer_id) {
+        $this->db->where('customer_id', $customer_id);
+        $result = $this->db->get('customer_vehicle');
+
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
+    
+    public function insertCustomerVehicle($vehicleData){
+      $this->db->insert('customer_vehicle', $vehicleData);  
+    }
+    
+    public function removeVehicle($id){
+        $this->db->where('id', $id);
+        $this->db->delete('customer_vehicle');
+    }
 }
