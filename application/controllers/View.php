@@ -44,7 +44,7 @@ class View extends CI_Controller {
         $data['main_content'] = 'order/edit_order';
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewStock() {
         $data['main_content'] = 'order/view_stock';
         $this->load->view("layouts/main", $data);
@@ -59,7 +59,7 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-        // Shipment
+    // Shipment
     public function viewShipments($orderId) {
         $this->load->model('order_model');
         $this->load->model('shipment_model');
@@ -68,7 +68,7 @@ class View extends CI_Controller {
         $data['main_content'] = 'shipment/view_shipments';
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewShipment($shipmentId) {
         $this->load->model('order_model');
         $this->load->model('shipment_model');
@@ -78,10 +78,10 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-        // Container
+    // Container
     public function viewContainers($shipmentId) {
         $this->load->model('shipment_model');
-        $this->load->model('container_model');        
+        $this->load->model('container_model');
         $data['shipmentId'] = $shipmentId;
         $data['main_content'] = 'container/view_containers';
         $this->load->view("layouts/main", $data);
@@ -110,13 +110,19 @@ class View extends CI_Controller {
         $data['main_content'] = "customer/view_customers";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function addAddress($customerId) {
-        
+        $this->load->model('customer_model');
+        $data['customerId'] = $customerId;
+        $data['main_content'] = "customer/add_customer_address";
+        $this->load->view("layouts/main", $data);
     }
-    
+
     public function addVehicle($customerId) {
-        
+        $this->load->model('customer_model');
+        $data['customerId'] = $customerId;
+        $data['main_content'] = "customer/add_customer_vehicle";
+        $this->load->view("layouts/main", $data);
     }
 
 }

@@ -1,28 +1,30 @@
-
+<?php
+if (isset($customerId)) {
+    $customer = $this->customer_model->getCustomerById(base64_decode(urldecode($customerId)));
+}
+?>
 <div id="div-table">
-    <legend>All Customers</legend>
+    <legend>All Addresses</legend>
     <table class="table table-striped">
         <thead>
-        <th>Code</th>
-        <th>Name</th>
-        <th>Company</th>
-        <th>Phone</th>
-        <th>Description</th>        
+        <th>Customer Code</th>
+        <th>Address</th>
+        <th>Phone Office</th>
+        <th>Phone Mobile</th>     
         <th>Action</th>
         </thead>
         <tbody>
             <?php
-            $allCustomers = $this->customer_model->getAllCustomers();
-            if ($allCustomers):
-                foreach ($allCustomers as $address):
+            $allAddressess = $this->customer_model->getAllAddressesForCustomer($customerId);
+            if ($allAddressess):
+                foreach ($allAddressess as $address):
                     $id = $address->id;
                     ?>
                     <tr>
-                        <td><?php echo $address->code; ?></td>
-                        <td><?php echo $address->name; ?></td>
-                        <td><?php echo $address->company; ?></td>
-                        <td><?php echo $address->phone; ?></td>
-                        <td><?php echo $address->description; ?></td>
+                        <td><?php echo $customer->code; ?></td>
+                        <td><?php echo $address->address; ?></td>
+                        <td><?php echo $address->phone_office; ?></td>
+                        <td><?php echo $address->phone_mobile; ?></td>
                         <td>
                             <?php if ($address->active !== '0') { ?>
                                 <a class="btn btn-primary btn-xs" role="button"
