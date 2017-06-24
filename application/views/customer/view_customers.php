@@ -14,17 +14,17 @@
             <?php
             $allCustomers = $this->customer_model->getAllCustomers();
             if ($allCustomers):
-                foreach ($allCustomers as $address):
-                    $id = $address->id;
+                foreach ($allCustomers as $customer):
+                    $id = $customer->id;
                     ?>
                     <tr>
-                        <td><?php echo $address->code; ?></td>
-                        <td><?php echo $address->name; ?></td>
-                        <td><?php echo $address->company; ?></td>
-                        <td><?php echo $address->phone; ?></td>
-                        <td><?php echo $address->description; ?></td>
+                        <td><?php echo $customer->code; ?></td>
+                        <td><?php echo $customer->name; ?></td>
+                        <td><?php echo $customer->company; ?></td>
+                        <td><?php echo $customer->phone; ?></td>
+                        <td><?php echo $customer->description; ?></td>
                         <td>
-                            <?php if ($address->active !== '0') { ?>
+                            <?php if ($customer->active !== '0') { ?>
                                 <a class="btn btn-primary btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/addAddress/<?php echo urlencode(base64_encode($id)); ?>">Addresses</a>
                                 <a class="btn btn-warning btn-xs" role="button"
