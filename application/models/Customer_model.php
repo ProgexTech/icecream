@@ -91,4 +91,19 @@ class Customer_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('customer_vehicle');
     }
+    
+    public function removeCustomer($id){
+        $this->db->where('id', $id);
+        $this->db->delete('customer');
+    }
+    
+     public function removeCustomerAddressessByCustomerId($id){
+        $this->db->where('customer_id', $id);
+        $this->db->delete('customer_address');
+    }
+    
+     public function removeCustomerVehiclesByCustomerId($id){
+        $this->db->where('customer_id', $id);
+        $this->db->delete('customer_vehicle');
+    }
 }

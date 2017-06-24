@@ -74,4 +74,15 @@ class Customer extends CI_Controller {
 
         redirect('/view/addVehicle/'.$customerId);    
     }
+    
+    public function removeCustomer($customerId){
+        $this->load->model('customer_model');
+     
+        $id = base64_decode(urldecode($customerId));
+        $this->customer_model->removeCustomerVehiclesByCustomerId($id);
+        $this->customer_model->removeCustomerAddressessByCustomerId($id);
+        $this->customer_model->removeCustomer($id);
+
+        redirect('/view/viewCustomers');    
+    }
 }

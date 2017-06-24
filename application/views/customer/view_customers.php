@@ -30,7 +30,7 @@
                                 <a class="btn btn-warning btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/addVehicle/<?php echo urlencode(base64_encode($id)); ?>">Vehicles</a>
                                 <a class="btn btn-danger btn-xs" role="button"
-                                   href="<?php echo base_url(); ?>customer/remove/<?php echo urlencode(base64_encode($id)); ?>">Remove</a>
+                                   href="<?php echo base_url(); ?>customer/removeCustomer/<?php echo urlencode(base64_encode($id)); ?>">Remove</a>
                                <?php } ?>
                         </td>
                     </tr>

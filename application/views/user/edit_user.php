@@ -4,7 +4,7 @@ $user = $this->user_model->getUserById($uId); ?>
 
 <div id="add-order-form" class="panel panel-default">
     <div id="login-form-title" class="panel-heading">
-        <h4>Add New Order</h4>
+        <h4>Edit User</h4>
     </div>
     <div id="form-div" class="panel-body">
         <?php if (isset($errors)) : ?>
