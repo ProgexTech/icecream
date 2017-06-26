@@ -89,7 +89,15 @@ class View extends CI_Controller {
 
     // Purchase Order
     public function addPO() {
+        $this->load->model('customer_model');
         $data['main_content'] = "po/add_po";
+        $this->load->view("layouts/main", $data);
+    }
+    
+    public function newPO($customerId = NULL) {
+        $this->load->model('customer_model');
+        $data['customerId'] = $customerId;
+        $data['main_content'] = "po/new_po";
         $this->load->view("layouts/main", $data);
     }
 

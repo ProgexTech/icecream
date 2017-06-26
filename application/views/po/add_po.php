@@ -9,44 +9,76 @@
         });
     });
 
+    $(document).ready(function () {
+
+        $('#customer-type-combo').on('change', function (e) {
+            var typeCode = this.value;
+            $('#customer-select').load('<?php echo base_url(); ?>' + 'api/getCustomersByType/' + typeCode);
+        });
+
+    });
+
 </script>
 
-<div id="add-order-form" class="panel panel-default">
-    <div id="login-form-title" class="panel-heading">
-        <h4>New Purchase Order</h4>
-    </div>
-    <div id="form-div" class="panel-body">
-        <?php if (isset($errors)) : ?>
-            <div class="alert alert-danger" role="alert">
-                <?php echo $errors; ?>
-            </div>
-        <?php endif; ?>
+<?php
+$allCustomerTypes = $this->customer_model->getAllCustomerTypes();
+?>
 
-        <form method="post" action="<?php echo base_url(); ?>purchaseOrder/add">
-            <div class="form-group">
-                <label>Date</label>
-                <input type="date" class="form-control" id="poDate" name="poDate" 
-                       value="<?php $date = new DateTime(); echo $date->format("Y-m-d") ?>"/>
-            </div>
-            <div class="form-group">
-                <label>PO No</label>
-                <input class="form-control" type="text" name="refNo" />
-            </div>
-            <div class="form-group">
-                <label>Customer Name</label>
-                <input class="form-control" type="text" name="orderNo" />
-            </div>
-            <div class="form-group">
-                <label>Customer Code</label>
-                <input class="form-control" type="text" name="country" />
-            </div>
-            <div class="form-group">
-                <label>Quantity</label>
-                <input class="form-control" type="number" name="qty" />
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Generate Token" class="btn btn-primary"/>
-            </div>
-        </form>
+<form class="form-inline">
+    <label for="customer-type">Customer Type : </label>
+    <select class="form-control" id="customer-type-combo" name="customer-type">
+        <option value="ALL">ALL</option>
+        <?php foreach ($allCustomerTypes as $type) : ?>
+            <option value="<?php echo $type->code; ?>"><?php echo $type->code . ' - ' . $type->name; ?></option>
+        <?php endforeach; ?>
+    </select>
+</form>
+<br/>
+
+<div id="customer-select">
+    <div id="div-table">
+        <table class="table table-striped">
+            <thead>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Phone</th>
+            <th>Description</th>        
+            <th>Action</th>
+            </thead>
+            <tbody>
+                <?php
+                $customers = $this->customer_model->getAllCustomers();
+                if ($customers):
+                    foreach ($customers as $customer):
+                        $id = $customer->id;
+                        ?>
+                        <tr>
+                            <td><?php echo $customer->code; ?></td>
+                            <td><?php echo $customer->name; ?></td>
+                            <td><?php echo $customer->company; ?></td>
+                            <td><?php echo $customer->phone; ?></td>
+                            <td><?php echo $customer->description; ?></td>
+                            <td>
+                                <?php if ($customer->active !== '0') { ?>
+                                    <a class="btn btn-primary btn-xs" role="button"
+                                       href="<?php echo base_url(); ?>view/newPO/<?php echo urlencode(base64_encode($id)); ?>">New PO</a>
+                                   <?php } ?>
+                            </td>
+                        </tr>
+                        <?php
+                    endforeach;
+                else:
+                    ?>
+                    <tr>
+                        <td colspan="9">No Entries</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
     </div>
+</div>
+
+<div id="customer-add">
+    <a class="btn btn-primary" href="<?php echo base_url(); ?>view/newPO" role="button">Create New PO</a>
 </div>

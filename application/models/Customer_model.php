@@ -24,8 +24,18 @@ class Customer_model extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function getAllCustomersByType($type_id) {
+        $this->db->where('typeId', $type_id);
+        $result = $this->db->get('customer');
+        
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
 
-    public function getCustomerTypeInfo($customer_type_id) {
+    public function getCustomerTypeInfoById($customer_type_id) {
         $this->db->where('id', $customer_type_id);
         $result = $this->db->get('customer_type');
 
@@ -35,6 +45,16 @@ class Customer_model extends CI_Model {
         return FALSE;
     }
 
+    public function getCustomerTypeInfoByCode($customer_type_code) {
+        $this->db->where('code', $customer_type_code);
+        $result = $this->db->get('customer_type');
+
+        if ($result->num_rows() != 0) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
+    
     public function getAllCustomerTypes() {
         $result = $this->db->get('customer_type');
 
