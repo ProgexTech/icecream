@@ -50,6 +50,7 @@ if (isset($shipmentId)) {
                         <td><?php echo $container->mWeek; ?></td>
                         <td><?php echo $container->qty; ?></td>                    
                         <td>
+                            
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>shipment/removeContainer/<?php echo urlencode(base64_encode($container->id)); ?>">Remove</a>
                         </td>

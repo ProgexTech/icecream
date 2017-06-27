@@ -133,4 +133,10 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
+    public function editShipment($shipmentId){
+        $this->load->model('shipment_model');
+        $data['shipmentId'] = $shipmentId;
+        $data['main_content'] = "shipment/edit_shipment";
+        $this->load->view("layouts/main", $data);
+    }
 }
