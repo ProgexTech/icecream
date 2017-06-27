@@ -15,7 +15,7 @@ class Container extends CI_Controller {
             'mWeek' => $this->input->post('mWeek'),
             'qty' => $this->input->post('qty'),
             'createdDate' => $date->format("Y-m-d H:i:s"),
-             'unloadingDate'=>$this->input->post('unloadingDate'),
+            'unloadingDate' => $this->input->post('unloadingDate'),
             'createdUserId' => $createdUserId
         );
 
@@ -37,13 +37,33 @@ class Container extends CI_Controller {
 
     public function remove($containerId) {
         $this->load->model('container_model');
-     
+
         $cId = base64_decode(urldecode($containerId));
         $containerRow = $this->container_model->getContainerById($cId);
         $shipmentId = urlencode(base64_encode($containerRow->shipmentId));
         $this->container_model->remove($cId);
 
         $url = '/view/viewContainers/' . $shipmentId;
+        redirect($url);
+    }
+
+    public function edit() {
+        $this->load->model('container_model');
+
+        $createdUserId = $this->session->userdata('user_id');
+        $date = new DateTime();
+        $contId = base64_decode(urldecode($this->input->post('containerId')));
+
+        $containerData = array(
+            'contCode' => $this->input->post('contCode'),
+            'mWeek' => $this->input->post('mWeek'),
+            'qty' => $this->input->post('qty'),
+            'unloadingDate' => $this->input->post('unloadingDate')
+        );
+
+        $containerId = $this->container_model->updateContainer($contId, $containerData);
+
+        $url = '/view/viewContainers/' . $this->input->post('shipmentId');
         redirect($url);
     }
 
