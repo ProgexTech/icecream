@@ -20,7 +20,7 @@ function hasPermission($url) {
     <head>
         <meta charset="utf-8">
         <title>Super Tech Cement | Order Management</title>
-        
+
         <link href="<?php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
         <link href="<?php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" />
@@ -28,10 +28,10 @@ function hasPermission($url) {
         <script src="<?php echo base_url(); ?>assets/js/jquery-ui.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="<?php echo base_url(); ?>assets/js/custom.js" type="text/javascript"></script>
-        
+
 <!--        <link href="<php echo base_url(); ?>assets/css/jquery-ui.css" rel="stylesheet" />
-        <link href="<php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="<php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" />-->
+<link href="<php echo base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" />
+<link href="<php echo base_url(); ?>assets/css/custom.css" rel="stylesheet" />-->
     </head>
     <body>
         <div id="main-div">
@@ -77,6 +77,18 @@ function hasPermission($url) {
                                     </ul>
                                 </li>
                             <?php endif; ?>
+                        </ul>
+                        <ul>
+                            <a href="alerts.html"> <div class="col-sm-1 col-md-1 col-lg-1 notification-icon" title="Pending POs"> 
+                                    <span class="glyphicon glyphicon-tasks" style="color:yellow"></span> 
+                                    <span class="badge" id="jt-alarm-count" style="color:red"> <?php
+                                        //$CI = &get_instance();
+                                        //$CI->load->model('order_model');
+                                        //$allOrders = $CI->order_model->getAllOrdersCount();
+                                        //echo $allOrders;
+                                        echo 1;
+                                        ?></span> </div>
+                            </a> 
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <?php
