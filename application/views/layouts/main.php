@@ -1,3 +1,23 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script type="text/javascript">
+    function reloadFunc() {
+        var url = "<?php echo base_url(); ?>order/countRecords";
+        // alert(url);
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "",
+            success: function(resp) {
+                document.getElementById("jt-alarm-count").textContent = resp;
+            }
+        });
+    }
+    $(window).on("load", function() {
+        setInterval(reloadFunc, 2000);
+    });
+
+
+</script>
 <?php
 
 function hasPermission($url) {
