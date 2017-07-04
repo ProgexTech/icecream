@@ -57,4 +57,20 @@ class Order_model extends CI_Model {
         $this->db->insert('orderaudit', $auditData);
     }
 
+    public function getOrderCount() {
+        return $this->db->count_all("order");
+    }
+
+    public function fetchData($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("order");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
+
 }

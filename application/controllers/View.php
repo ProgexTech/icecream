@@ -34,6 +34,27 @@ class View extends CI_Controller {
         $this->load->model('order_model');
         $this->load->model('user_model');
 
+        $this->load->library('pagination');
+
+        $config = array();
+        $config["base_url"] = base_url() . "view/viewOrders";
+        $total_row = $this->order_model->getOrderCount();
+        $config["total_rows"] = $total_row;
+        $config["per_page"] = 1;
+        $config['use_page_numbers'] = TRUE;
+        $config['num_links'] = $total_row;
+        $config['cur_tag_open'] = '&nbsp;<a class="current">';
+        $config['cur_tag_close'] = '</a>';
+        $config['next_link'] = 'Next';
+        $config['prev_link'] = 'Previous';
+        $config["uri_segment"] = 3;
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $offset = $page==0? 0: ($page-1)*$config["per_page"];
+        $data["results"] = $this->order_model->fetchData($config["per_page"], $offset);
+        $data["links"] = $this->pagination->create_links();
+
         $data['main_content'] = "order/view_orders";
         $this->load->view("layouts/main", $data);
     }
@@ -93,7 +114,7 @@ class View extends CI_Controller {
         $data['main_content'] = "po/add_po";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function newPO($customerId = NULL) {
         $this->load->model('customer_model');
         $data['customerId'] = $customerId;
@@ -133,14 +154,14 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-    public function editShipment($shipmentId){
+    public function editShipment($shipmentId) {
         $this->load->model('shipment_model');
         $data['shipmentId'] = $shipmentId;
         $data['main_content'] = "shipment/edit_shipment";
         $this->load->view("layouts/main", $data);
     }
-    
-     public function editContainer($containerId, $shipmentId){
+
+    public function editContainer($containerId, $shipmentId) {
         $this->load->model('shipment_model');
         $this->load->model('container_model');
         $data['shipmentId'] = $shipmentId;
@@ -148,4 +169,5 @@ class View extends CI_Controller {
         $data['main_content'] = "container/edit_container";
         $this->load->view("layouts/main", $data);
     }
+
 }
