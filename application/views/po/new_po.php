@@ -102,13 +102,19 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
         <div class="form-group">
             <label for="sale_type" class="col-sm-2 control-label">Type of Sale</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="sale_type">
+                <select class="form-control" name="sale_type">
+                    <option value="CASH">CASH</option>
+                    <option value="CREDIT">CREDIT</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
             <label for="delivery_type" class="col-sm-2 control-label">Delivery Type</label>
             <div class="col-sm-6">
-                <input type="text" class="form-control" name="delivery_type">
+                <select class="form-control" name="delivery_type">
+                    <option value="PICK UP">PICK UP</option>
+                    <option value="DELIVERY">DELIVERY</option>
+                </select>
             </div>
         </div>
         <div class="form-group">
