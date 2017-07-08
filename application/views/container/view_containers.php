@@ -1,6 +1,6 @@
 <script type="text/javascript">
 
-    $(function () {
+    $(function() {
         $("#unloadingDate").datepicker({
             dateFormat: "yy-mm-dd",
             yearRange: "c-90:c",
@@ -23,12 +23,16 @@ if (isset($shipmentId)) {
 <div>
     <legend>Add Container</legend>
     <form class="form-inline" method="post" action="<?php echo base_url(); ?>container/add">
-        <input type="hidden" name="shipmentId" value="<?php if ($shipment) {echo $shipment->id;} else {echo -1;} ?>" />
+        <input type="hidden" name="shipmentId" value="<?php if ($shipment) {
+    echo $shipment->id;
+} else {
+    echo -1;
+} ?>" />
         <div class="form-group">
             <label for="shippingNo">Shipping No</label>
-            <?php if (isset($shipment)) : ?>
+<?php if (isset($shipment)) : ?>
                 <input type="text" class="form-control" id="shippingNo" name="shippingNo" value="<?php echo $shipment->shippingNo; ?>" readonly="readonly" size="12px">
-            <?php endif; ?>
+<?php endif; ?>
         </div>
         &nbsp;
         <div class="form-group">
@@ -47,8 +51,8 @@ if (isset($shipmentId)) {
         </div>
         &nbsp;   
         <div class="form-group">
-        <label for="unloadingDate">Unloading Date</label>
-        <input type="text" class="form-control" id="unloadingDate" name="unloadingDate" size="10px">
+            <label for="unloadingDate">Unloading Date</label>
+            <input type="text" class="form-control" id="unloadingDate" name="unloadingDate" size="10px">
         </div>
         &nbsp;
         <button type="submit" class="btn btn-primary">Add</button>
@@ -67,12 +71,12 @@ if (isset($shipmentId)) {
         <th>Action</th>
         </thead>
         <tbody>
-            <?php if ($shipment && $allContainers) : ?>
-                <?php foreach ($allContainers as $container) : ?>
+                        <?php if ($shipment && $allContainers) : ?>
+                            <?php foreach ($allContainers as $container) : ?>
                     <tr>
                         <td>
                             <a class="btn btn-default linkButtonColor btn-xs" href="<?php echo base_url(); ?>view/viewShipment/<?php echo urlencode(base64_encode($shipment->id)); ?>">
-                            <?php echo $shipment->shippingNo; ?>
+        <?php echo $shipment->shippingNo; ?>
                             </a>                            
                         </td>
                         <td><?php echo $container->contCode; ?></td>
@@ -80,6 +84,8 @@ if (isset($shipmentId)) {
                         <td><?php echo $container->qty; ?></td> 
                         <td><?php echo $container->unloadingDate; ?></td>  
                         <td>
+                            <a class="btn btn-warning btn-xs" role="button"
+                               href="<?php echo base_url(); ?>view/editContainer/<?php echo urlencode(base64_encode($container->id)); ?>/<?php echo urlencode(base64_encode($shipment->id)); ?>">Edit</a>
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>container/remove/<?php echo urlencode(base64_encode($container->id)); ?>">Remove</a>
                         </td>
@@ -89,7 +95,7 @@ if (isset($shipmentId)) {
                 <tr>
                     <td colspan="9">No Entries</td>
                 </tr>
-            <?php endif; ?>
+<?php endif; ?>
         </tbody>
     </table>
 </div>

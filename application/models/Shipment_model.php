@@ -31,4 +31,9 @@ class Shipment_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('shipment');
     }
+    
+    public function updateShipment($shippingId, $shipmentData){
+        $this->db->where('id', $shippingId);
+        $this->db->update('shipment', $shipmentData);
+    }
 }

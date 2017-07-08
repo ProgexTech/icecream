@@ -86,6 +86,8 @@ if (isset($orderId)) {
                         <td>
                             <a class="btn btn-primary btn-xs" role="button"
                                href="<?php echo base_url(); ?>view/viewContainers/<?php echo urlencode(base64_encode($shipment->id)); ?>">Containers</a>
+                            <a class="btn btn-warning btn-xs" role="button"
+                                   href="<?php echo base_url(); ?>view/editShipment/<?php echo urlencode(base64_encode($shipment->id)); ?>">Edit</a>
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>shipment/remove/<?php echo urlencode(base64_encode($shipment->id)); ?>">Remove</a>
                         </td>

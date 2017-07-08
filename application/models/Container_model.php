@@ -52,10 +52,15 @@ class Container_model extends CI_Model {
         }
         return FALSE;
     }
-    
-    public function removeContainersBelongToShipment($shipmentId){
-         $this->db->where('shipmentId', $shipmentId);
+
+    public function removeContainersBelongToShipment($shipmentId) {
+        $this->db->where('shipmentId', $shipmentId);
         $this->db->delete('container');
+    }
+
+    public function updateContainer($contId, $containerData) {
+        $this->db->where('id', $contId);
+        $this->db->update('container', $containerData);
     }
 
 }
