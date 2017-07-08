@@ -99,18 +99,18 @@ function hasPermission($url) {
                                 </li>
                             <?php endif; ?>
                         </ul>
-                        <ul>
+<!--                        <ul>
                             <a href="alerts.html"> <div class="col-sm-1 col-md-1 col-lg-1 notification-icon" title="Pending POs"> 
                                     <span class="glyphicon glyphicon-tasks" style="color:yellow"></span> 
-                                    <span class="badge" id="jt-alarm-count" style="color:red"> <?php
+                                    <span class="badge" id="jt-alarm-count" style="color:red"> <php
                                         //$CI = &get_instance();
                                         //$CI->load->model('order_model');
                                         //$allOrders = $CI->order_model->getAllOrdersCount();
                                         //echo $allOrders;
-                                        echo 1;
-                                        ?></span> </div>
+                                        //echo 1;
+                                        ></span> </div>
                             </a> 
-                        </ul>
+                        </ul>-->
                         <ul class="nav navbar-nav navbar-right">
                             <?php
                             $display_name = $this->session->userdata('display_name');
