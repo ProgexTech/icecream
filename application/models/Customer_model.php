@@ -5,6 +5,11 @@ class Customer_model extends CI_Model {
     public function insertCustomer($customerData) {
         $this->db->insert('customer', $customerData);
     }
+    
+    public function insertUnregCustomer($details) {
+        $this->db->insert('unreg_customer', $details);
+        return $this->db->insert_id();
+    }
 
     public function getCustomerById($customer_id) {
         $this->db->where('id', $customer_id);
@@ -15,9 +20,28 @@ class Customer_model extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function getUnregCustomerById($customer_id) {
+        $this->db->where('id', $customer_id);
+        $result = $this->db->get('unreg_customer');
+
+        if ($result->num_rows() != 0) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
 
     public function getAllCustomers() {
         $result = $this->db->get('customer');
+
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
+    
+    public function getAllUnregCustomers() {
+        $result = $this->db->get('unreg_customer');
 
         if ($result->num_rows() != 0) {
             return $result->result();

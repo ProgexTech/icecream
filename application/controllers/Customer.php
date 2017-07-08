@@ -21,6 +21,29 @@ class Customer extends CI_Controller {
 
         redirect('/view/viewCustomers');
     }
+    
+    public function add_unreg() {
+        $this->load->model('customer_model');
+        $date = new DateTime();
+
+        $customerData = array(
+            'name' => $this->input->post('name'),
+            'phone' => $this->input->post('phone'),
+            'company' => $this->input->post('company'),
+            'address' => $this->input->post('address'),
+            'region' => $this->input->post('region'),
+            'regNo' => $this->input->post('regno'),
+            'driverName' => $this->input->post('driver'),
+            'createdDate' => $date->format("Y-m-d H:i:s")
+        );
+        
+        //print_r($customerData);die();
+
+        $newId = $this->customer_model->insertUnregCustomer($customerData);
+
+        //href="<?php echo base_url(); >view/newPO/<?php echo urlencode(base64_encode($id)); >">New PO</a>
+        redirect('/view/newPO/'.urlencode(base64_encode($newId)).'/'.urlencode(base64_encode('type=0')));
+    }
 
     public function addAddress() {
         $this->load->model('customer_model');

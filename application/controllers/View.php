@@ -94,9 +94,10 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
     
-    public function newPO($customerId = NULL) {
+    public function newPO($customerId, $type=1) {
         $this->load->model('customer_model');
         $data['customerId'] = $customerId;
+        $data['type'] = $type;
         $data['main_content'] = "po/new_po";
         $this->load->view("layouts/main", $data);
     }
@@ -130,6 +131,12 @@ class View extends CI_Controller {
         $this->load->model('customer_model');
         $data['customerId'] = $customerId;
         $data['main_content'] = "customer/add_customer_vehicle";
+        $this->load->view("layouts/main", $data);
+    }
+    
+    public function viewUnregCustomers() {
+        $this->load->model('customer_model');
+        $data['main_content'] = "customer/view_unreg_customers";
         $this->load->view("layouts/main", $data);
     }
 

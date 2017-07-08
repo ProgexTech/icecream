@@ -80,5 +80,57 @@ $allCustomerTypes = $this->customer_model->getAllCustomerTypes();
 </div>
 
 <div id="customer-add">
-    <a class="btn btn-primary" href="<?php echo base_url(); ?>view/newPO" role="button">Create New PO</a>
+    <h4>Customer Details</h4>
+    <hr/>
+    <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>customer/add_unreg">
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="phone" class="col-sm-2 control-label">Phone</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="phone">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="company" class="col-sm-2 control-label">Company</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="company">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="address" class="col-sm-2 control-label">Address</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="address">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="region" class="col-sm-2 control-label">Region</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="region">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regno" class="col-sm-2 control-label">Vehicle Reg.No</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="regno">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="driver" class="col-sm-2 control-label">Driver</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="driver">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Create New PO</button>
+            </div>
+        </div>
+    </form>
+
+<!--    <a class="btn btn-primary" href="<php echo base_url(); ?>view/newPO" role="button">Create New PO</a>-->
 </div>

@@ -1,9 +1,9 @@
 <?php
 
-class Order_model extends CI_Model {
+class PurchaseOrder_model extends CI_Model {
 
-    public function insertOrder($orderData) {
-        $this->db->insert('order', $orderData);
+    public function insertPO($poData) {
+        $this->db->insert('order', $poData);
     }
 
 }
