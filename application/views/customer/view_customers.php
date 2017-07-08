@@ -5,6 +5,7 @@
         <thead>
         <th>Code</th>
         <th>Name</th>
+        <th>Type</th>
         <th>Company</th>
         <th>Phone</th>
         <th>Description</th>        
@@ -16,10 +17,12 @@
             if ($allCustomers):
                 foreach ($allCustomers as $customer):
                     $id = $customer->id;
+                    $typeInfo = $this->customer_model->getCustomerTypeInfoById($customer->typeId);
                     ?>
                     <tr>
                         <td><?php echo $customer->code; ?></td>
                         <td><?php echo $customer->name; ?></td>
+                        <td><?php echo $typeInfo->code; ?></td>
                         <td><?php echo $customer->company; ?></td>
                         <td><?php echo $customer->phone; ?></td>
                         <td><?php echo $customer->description; ?></td>

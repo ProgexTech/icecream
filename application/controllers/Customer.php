@@ -25,24 +25,45 @@ class Customer extends CI_Controller {
     public function add_unreg() {
         $this->load->model('customer_model');
         $date = new DateTime();
+        
+        $typeInfo = $this->customer_model->getCustomerTypeInfoByCode('UG');
 
         $customerData = array(
             'name' => $this->input->post('name'),
-            'phone' => $this->input->post('phone'),
+            'code' => '',
+            'typeId' => $typeInfo->id,
             'company' => $this->input->post('company'),
-            'address' => $this->input->post('address'),
-            'region' => $this->input->post('region'),
-            'regNo' => $this->input->post('regno'),
-            'driverName' => $this->input->post('driver'),
-            'createdDate' => $date->format("Y-m-d H:i:s")
+            'description' => '',
+            'phone' => $this->input->post('phone'),
+            'createdDate' => $date->format("Y-m-d H:i:s"),
+            'active' => 1
         );
+
+        $customerId = $this->customer_model->insertCustomer($customerData);
+        $code = 'UG'.str_pad($customerId, 4, '0', STR_PAD_LEFT);
+        $this->customer_model->updateCustomerCode($customerId, $code);
+
+        $addressData = array(
+            'customer_id' => $customerId,
+            'region' => $this->input->post('region'),
+            'address' => $this->input->post('address'),
+            'phone_office' => '',
+            'phone_mobile' => $this->input->post('phone')
+        );
+
+        $this->customer_model->insertCustomerAddress($addressData);
         
-        //print_r($customerData);die();
+        $vehicleData = array(
+            'customer_id' => $customerId,
+            'regNo' => $this->input->post('regno'),
+            'type' => '',
+            'capacity' => '',
+            'driverName' => $this->input->post('driver')
+        );
 
-        $newId = $this->customer_model->insertUnregCustomer($customerData);
-
-        //href="<?php echo base_url(); >view/newPO/<?php echo urlencode(base64_encode($id)); >">New PO</a>
-        redirect('/view/newPO/'.urlencode(base64_encode($newId)).'/'.urlencode(base64_encode('type=0')));
+        $this->customer_model->insertCustomerVehicle($vehicleData);
+        
+        redirect('/view/newPO/'.urlencode(base64_encode($customerId)));
     }
 
     public function addAddress() {
@@ -52,6 +73,7 @@ class Customer extends CI_Controller {
         
         $addressData = array(
             'customer_id' => base64_decode(urldecode($customerId)),
+            'region' => $this->input->post('region'),
             'address' => $this->input->post('address'),
             'phone_office' => $this->input->post('phoneOffice'),
             'phone_mobile' => $this->input->post('phoneMobile')
@@ -76,7 +98,7 @@ class Customer extends CI_Controller {
         
         $customerId = $this->input->post('customerId');
         
-        $addressData = array(
+        $vehicleData = array(
             'customer_id' => base64_decode(urldecode($customerId)),
             'regNo' => $this->input->post('regNo'),
             'type' => $this->input->post('type'),
@@ -84,7 +106,7 @@ class Customer extends CI_Controller {
             'driverName' => $this->input->post('driverName')
         );
 
-        $this->customer_model->insertCustomerVehicle($addressData);
+        $this->customer_model->insertCustomerVehicle($vehicleData);
 
         redirect('/view/addVehicle/'.$customerId);
     }
