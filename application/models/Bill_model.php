@@ -18,13 +18,12 @@ class Bill_model extends CI_Model {
         return FALSE;
     }
     
-    public function getBillById($id) {
+    public function getBillById($id) {     
         $this->db->where('id', $id);
-
         $result = $this->db->get('bill');
 
-        if ($result->num_rows() != 0) {
-            return $result->result();
+        if ($result->num_rows() == 1) {
+            return $result->row(0);
         }
         return FALSE;
     }

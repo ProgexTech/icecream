@@ -14,4 +14,14 @@ class Sale_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('sale');
     }
+    
+    public function getSalesByBillId($billId){
+       $this->db->where('billId', $billId);
+        $result = $this->db->get('sale');
+
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE; 
+    }
 }

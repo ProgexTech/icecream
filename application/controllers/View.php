@@ -274,6 +274,7 @@ class View extends CI_Controller {
         $this->load->model('stock_model');
         $this->load->model('bill_model');
         $this->load->model('container_model');
+        $this->load->model('shipment_model');
         
         $data['billId'] = $billId;
         $data['main_content'] = "po/print_delivery_note";
