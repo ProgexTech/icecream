@@ -31,5 +31,45 @@ class Api extends CI_Controller {
 
         $this->load->view("api/customer_table", $data);
     }
+    
+    public function getPricesForCustomer($customerId) {
+        $this->load->model('user_model');
+        $this->load->model('customer_model');
+        $data = NULL;
+
+        $prices = $this->customer_model->getPricesForCustomer($customerId);
+        if ($prices) {
+            $data['prices'] = $prices;
+        } else {
+            $data['prices'] = FALSE;
+        }            
+        
+        $this->load->view("api/prices_table", $data);   
+    }
+    
+    public function addPriceForCustomer($customerId, $price) {
+        $this->load->model('user_model');
+        $this->load->model('customer_model');
+        
+        $priceData = array(
+            'customerId' => $customerId,
+            'price' => $price,
+            'hidden' => 0,
+            'addedUser' => 2
+        );
+        
+        $this->customer_model->addPriceForCustomer($priceData);
+        
+        $data = NULL;
+
+        $prices = $this->customer_model->getPricesForCustomer($customerId);
+        if ($prices) {
+            $data['prices'] = $prices;
+        } else {
+            $data['prices'] = FALSE;
+        }            
+        
+        $this->load->view("api/prices_table", $data);   
+    }
 
 }

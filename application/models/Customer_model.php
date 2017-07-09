@@ -167,4 +167,19 @@ class Customer_model extends CI_Model {
         $this->db->delete('customer_vehicle');
     }
 
+    public function getPricesForCustomer($customerId) {
+        $this->db->where('customerId', $customerId);
+        $result = $this->db->get('customer_price');
+
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
+    
+    public function addPriceForCustomer($priceData) {
+        $this->db->insert('customer_price', $priceData);
+    }
+    
 }
+

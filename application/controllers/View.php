@@ -145,7 +145,11 @@ class View extends CI_Controller {
     }
 
     public function processPO($poId) {
-        
+        $this->load->model('customer_model');
+        $this->load->model('purchaseOrder_model');
+        $data['poId'] = $poId;
+        $data['main_content'] = "po/process_po";
+        $this->load->view("layouts/main", $data);
     }
     
     public function viewPOs() {
@@ -233,9 +237,9 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
     
-    public function viewUnregCustomers() {
+    public function viewPrices() {
         $this->load->model('customer_model');
-        $data['main_content'] = "customer/view_unreg_customers";
+        $data['main_content'] = "customer/customer_prices";
         $this->load->view("layouts/main", $data);
     }
 
