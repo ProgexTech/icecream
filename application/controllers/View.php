@@ -144,6 +144,10 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
+    public function processPO($poId) {
+        
+    }
+    
     public function viewPOs() {
         $this->load->model('purchaseOrder_model');
         $this->load->model('customer_model');

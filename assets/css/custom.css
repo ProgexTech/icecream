@@ -99,6 +99,14 @@
     background-color: #99ffbb;
 }
 
-.form-text{
+.form-text {
     padding-top: 5px;
+}
+
+.pgx-success {
+    background-color: #dff2bf;
+}
+
+.pgx-danger {
+    background-color: #ffbaba;
 }
