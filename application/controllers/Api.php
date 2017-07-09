@@ -55,7 +55,7 @@ class Api extends CI_Controller {
             'customerId' => $customerId,
             'price' => $price,
             'hidden' => 0,
-            'addedUser' => 2
+            'addedUser' => $this->session->userdata('user_id')
         );
         
         $this->customer_model->addPriceForCustomer($priceData);

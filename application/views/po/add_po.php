@@ -126,6 +126,12 @@ $allCustomerTypes = $this->customer_model->getAllCustomerTypes();
             </div>
         </div>
         <div class="form-group">
+            <label for="driver" class="col-sm-2 control-label">Price</label>
+            <div class="col-sm-10">
+                <input type="number" step="0.01" class="form-control" name="price">
+            </div>
+        </div>
+        <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <button type="submit" class="btn btn-primary">Create New PO</button>
             </div>

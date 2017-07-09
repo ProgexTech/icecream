@@ -38,7 +38,7 @@ class Customer extends CI_Controller {
             'createdDate' => $date->format("Y-m-d H:i:s"),
             'active' => 1
         );
-
+        
         $customerId = $this->customer_model->insertCustomer($customerData);
         $code = 'UG'.str_pad($customerId, 4, '0', STR_PAD_LEFT);
         $this->customer_model->updateCustomerCode($customerId, $code);
@@ -62,6 +62,15 @@ class Customer extends CI_Controller {
         );
 
         $this->customer_model->insertCustomerVehicle($vehicleData);
+        
+        $priceData = array(
+            'customerId' => $customerId,
+            'price' => $this->input->post('price'),
+            'hidden' => 0,
+            'addedUser' => $this->session->userdata('user_id')
+        );
+        
+        $this->customer_model->addPriceForCustomer($priceData);
         
         redirect('/view/newPO/'.urlencode(base64_encode($customerId)));
     }
