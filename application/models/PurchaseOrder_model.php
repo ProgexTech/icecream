@@ -32,4 +32,14 @@ class PurchaseOrder_model extends CI_Model {
         return false;
     }
 
+    public function getPOById($id) {
+        $this->db->where('id', $id);
+        $result = $this->db->get('purchase_order');
+
+        if ($result->num_rows() != 0) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
+
 }

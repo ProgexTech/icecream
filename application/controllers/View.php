@@ -251,4 +251,11 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
+    public function printPO($poId) {
+        $this->load->model('purchaseOrder_model');
+        $this->load->model('customer_model');
+        $data['poId'] = $poId;
+        $data['main_content'] = "po/print_po";
+        $this->load->view("layouts/main", $data);
+    }
 }

@@ -16,9 +16,9 @@ class PurchaseOrder extends CI_Controller {
             'createdDate' => $this->input->post('date_time')
         );
 
-        $this->purchaseOrder_model->insertPO($poData);
+        $poId = $this->purchaseOrder_model->insertPO($poData);
         
-        redirect('/view/viewPOs');
+        redirect('/view/printPO/'.  urlencode(base64_encode($poId)));
     }
 
 }
