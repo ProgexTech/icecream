@@ -10,6 +10,7 @@
 <?php
 $po = $this->purchaseOrder_model->getPOById(base64_decode(urldecode($poId)));
 $customerInfo = $this->customer_model->getCustomerById($po->customerId);
+$customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
 $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 ?>
@@ -60,8 +61,8 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td><?php echo $po->saleType; ?></td>
             <td>&nbsp;</td>
             <td><?php echo $po->quantity; ?></td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td><?php echo $customerPrice[0]->price; ?></td>
+            <td><?php echo $po->quantity*$customerPrice[0]->price;  ?></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -70,7 +71,7 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td><strong>Total</strong></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td>&nbsp;</td>
+            <td><strong><?php echo $po->quantity*$customerPrice[0]->price;?></strong></td>
         </tr>
     </tbody>
 </table>

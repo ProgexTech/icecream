@@ -39,7 +39,7 @@
                                href="<?php echo base_url(); ?>view/viewPO/<?php echo urlencode(base64_encode($po->id)); ?>">Details</a>
                             <?php else : ?>
                             <a class="btn btn-danger btn-xs" role="button"
-                               href="<?php echo base_url(); ?>view/processPO/<?php echo urlencode(base64_encode($po->id)); ?>">Process</a>
+                               href="<?php echo base_url(); ?>view/processPO/<?php echo urlencode(base64_encode($po->id)); ?>">Proceed</a>
                         
                             <?php endif; ?>
                         </td>

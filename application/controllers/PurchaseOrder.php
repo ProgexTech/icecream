@@ -10,6 +10,7 @@ class PurchaseOrder extends CI_Controller {
             'customerId' => $this->input->post('customer_id'),
             'customerAddressId' => $this->input->post('customerAddress_id'),
             'customerVehicleId' => $this->input->post('customerVehicle_id'),
+            'customerPriceId' => $this->input->post('customerPrice_id'),
             'deliveryType' => $this->input->post('delivery_type'),
             'saleType' => $this->input->post('sale_type'),
             'quantity' => $this->input->post('quantity'),

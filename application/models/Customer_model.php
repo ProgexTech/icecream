@@ -181,5 +181,14 @@ class Customer_model extends CI_Model {
         $this->db->insert('customer_price', $priceData);
     }
     
+    public function getPricesById($id) {
+        $this->db->where('id', $id);
+        $result = $this->db->get('customer_price');
+
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
 }
 

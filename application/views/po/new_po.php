@@ -1,5 +1,6 @@
 <?php
 $customer = $this->customer_model->getCustomerById(base64_decode(urldecode($customerId)));
+$customerPrices = $this->customer_model->getPricesForCustomer(base64_decode(urldecode($customerId)));
 $customerAddresses = $this->customer_model->getAllAddressesForCustomer(base64_decode(urldecode($customerId)));
 $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_decode(urldecode($customerId)));
 ?>
@@ -88,8 +89,10 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
             <label for="date_time" class="col-sm-2 control-label">Date/Time</label>
             <div class="col-sm-6 ">
                 <input type="text" class="form-control" name="date_time" readonly="readonly"
-                       value="<?php $date = new DateTime();
-                echo $date->format("Y-m-d H:i:s"); ?>">
+                       value="<?php
+                       $date = new DateTime();
+                       echo $date->format("Y-m-d H:i:s");
+                       ?>">
             </div>
         </div>
         <div class="form-group">
@@ -98,6 +101,16 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
                 <input type="text" class="form-control" name="quantity">
             </div>
             <div class="col-sm-5"><p class="form-text text-left">bags</p></div>
+        </div>
+        <div class="form-group">
+            <label for="prices" class="col-sm-2 control-label">Price</label>
+            <div class="col-sm-3">
+                <select class="form-control" name="customerPrice_id">
+                    <?php foreach ($customerPrices as $cp) : ?>
+                        <option value="<?php echo $cp->id; ?>"><?php echo $cp->price; ?></option>
+                    <?php endforeach; ?>
+                </select> 
+            </div>
         </div>
         <div class="form-group">
             <label for="sale_type" class="col-sm-2 control-label">Type of Sale</label>
