@@ -40,7 +40,7 @@ class View extends CI_Controller {
         $config = array();
         $config["base_url"] = base_url() . "view/viewOrders";        
         $config["total_rows"] = $total_row;
-        $config["per_page"] = 1;
+        $config["per_page"] = PAGINATION_NUM_RECORDS_PER_PAGE;
         $config['use_page_numbers'] = TRUE;
         $config['num_links'] = $total_row;
         //$config['cur_tag_open'] = ' ';
@@ -154,7 +154,7 @@ class View extends CI_Controller {
         $config = array();
         $config["base_url"] = base_url() . "view/viewPOs";        
         $config["total_rows"] = $total_row;
-        $config["per_page"] = 1;
+        $config["per_page"] = PAGINATION_NUM_RECORDS_PER_PAGE;
         $config['use_page_numbers'] = TRUE;
         $config['num_links'] = $total_row;
         //$config['cur_tag_open'] = ' ';
