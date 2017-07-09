@@ -1,7 +1,7 @@
 <script>
     $(document).on('change', '#qty', function() {
         var qty = $(this).val();
-        var unitPrice = document.getElementById('uPrice').textContent;
+        var unitPrice = document.getElementById('uPrice').value;
         var total = qty * unitPrice;
         $('#tot').val(total);
     });
@@ -73,7 +73,7 @@ $customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
 
         <div class="form-group">
             <label for="date_time" class="col-sm-2 control-label">Date/Time</label>
-            <div class="col-sm-6 ">
+            <div class="col-sm-5 ">
                 <label class="form-control">
                     <?php $date = new DateTime($po->createdDate);
                     echo $date->format("Y-m-d");
@@ -97,7 +97,7 @@ $customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
         <div class="form-group">
             <label for="price" class="col-sm-2 control-label">Unit Price</label>
             <div class="col-sm-5">
-                <label id="uPrice" class="form-control"><?php echo $customerPrice[0]->price; ?></label>
+                <input type="number" step="0.01"  readonly="true" id="uPrice" name="unitPrice" class="form-control" value="<?php echo $customerPrice[0]->price; ?>"/>
             </div>
         </div>
         <div class="form-group">
@@ -108,14 +108,14 @@ $customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
         </div>
         <div class="form-group">
             <label for="sale_type" class="col-sm-2 control-label">Type of Sale</label>
-            <div class="col-sm-6">
-                <label for="sale_type" class="col-sm-2 control-label"><?php echo $po->saleType; ?></label>
+            <div class="col-sm-5">
+                <input type="text" readonly="true" class="form-control" value="<?php echo $po->saleType; ?>"/>
             </div>
         </div>
         <div class="form-group">
             <label for="delivery_type" class="col-sm-2 control-label">Delivery Type</label>
-            <div class="col-sm-6">
-                <label for="delivery_type" class="col-sm-2 control-label"><?php echo $po->deliveryType; ?></label>
+            <div class="col-sm-5">
+                 <input type="text" readonly="true" class="form-control" value="<?php echo $po->deliveryType; ?>"/>
             </div>
         </div>
         <div class="form-group">

@@ -17,18 +17,6 @@ class Bill_model extends CI_Model {
         }
         return FALSE;
     }
-
-    public function getBillByIdAndStatus($id, $status) {
-        $this->db->where('id', $id);
-        $this->db->where('status', $status);
-
-        $result = $this->db->get('bill');
-
-        if ($result->num_rows() != 0) {
-            return $result->result();
-        }
-        return FALSE;
-    }
     
     public function getBillById($id) {
         $this->db->where('id', $id);

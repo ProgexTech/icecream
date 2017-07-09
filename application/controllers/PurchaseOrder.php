@@ -18,15 +18,73 @@ class PurchaseOrder extends CI_Controller {
         );
 
         $poId = $this->purchaseOrder_model->insertPO($poData);
-        
-        redirect('/view/printPO/'.  urlencode(base64_encode($poId)));
+
+        redirect('/view/printPO/' . urlencode(base64_encode($poId)));
     }
 
-    public function finalize(){
+    public function finalize() {
         $this->load->model('purchaseOrder_model');
-        $this->load->model('Sale_model');
-        $this->load->model('Stock_model');
-       
-       redirect('/view/viewPOs/'); 
+        $this->load->model('sale_model');
+        $this->load->model('stock_model');
+        $this->load->model('bill_model');
+
+        $qty = $this->input->post('issuedQty');
+        $uPrice = $this->input->post('unitPrice');
+        $poId = base64_decode(urldecode($this->input->post('poId')));
+
+        $po = $this->purchaseOrder_model->getPOById($poId);
+
+        $amount = $uPrice * $qty;
+
+        $billData = array(
+            'customerId' => $po->customerId,
+            'poId' => $poId,
+            'userId' => $this->session->userdata('user_id'),
+            'amount' => $amount,
+            'qty' => $qty
+        );
+
+        $billId = $this->bill_model->insertBill($billData);
+
+        $tempQty = $qty;
+
+        $allStock = $this->stock_model->getAllInstockRecords();
+        if ($allStock != FALSE)
+            foreach ($allStock as $row) {
+
+                $stockQty = $row->currentQty;
+                $stockId = $row->id;
+
+                if ($tempQty <= $stockQty) {
+                    $newQty = $stockQty - $tempQty;
+
+                    $this->stock_model->updateCurrentQuantity($stockId, $newQty);
+
+                    $saleData = array(
+                        'billId' => $billId,
+                        'stockId' => $stockId,
+                        'qty' => $tempQty
+                    );
+                    $this->sale_model->insert($saleData);
+                    break;
+                } else {
+                    $tempQty -= $stockQty;
+                    $newQty = 0;
+
+                    $saleData = array(
+                        'billId' => $billId,
+                        'stockId' => $stockId,
+                        'qty' => $stockQty
+                    );
+                    $this->sale_model->insert($saleData);
+
+                    $this->stock_model->updateCurrentQuantity($stockId, $newQty);
+                }
+            }
+
+        $this->purchaseOrder_model->setUpdateAsDelivered($poId);
+        
+        redirect('/view/printDeliveryNote/' . urlencode(base64_encode($billId)));
     }
+
 }

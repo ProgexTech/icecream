@@ -42,4 +42,11 @@ class PurchaseOrder_model extends CI_Model {
         return FALSE;
     }
 
+    public function setUpdateAsDelivered($id){
+        $this->db->where('id', $id);
+        $data = array(
+            'delivered' => '1'
+        );
+        $this->db->update('purchase_order', $data);
+    }
 }

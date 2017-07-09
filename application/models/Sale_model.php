@@ -2,7 +2,7 @@
 class Sale_model extends CI_Model {
 
     public function insert($saleData) {
-        $this->db->insert('sale', $billData);
+        $this->db->insert('sale', $saleData);
     }
     
     public function update($id, $data) {
