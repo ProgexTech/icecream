@@ -22,4 +22,11 @@ class PurchaseOrder extends CI_Controller {
         redirect('/view/printPO/'.  urlencode(base64_encode($poId)));
     }
 
+    public function finalize(){
+        $this->load->model('purchaseOrder_model');
+        $this->load->model('Sale_model');
+        $this->load->model('Stock_model');
+       
+       redirect('/view/viewPOs/'); 
+    }
 }
