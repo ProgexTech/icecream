@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <?php
-            $allCustomers = $this->customer_model->getAllCustomers();
+            $allCustomers = $results; //paginations
             if ($allCustomers):
                 foreach ($allCustomers as $customer):
                     $id = $customer->id;
@@ -47,4 +47,5 @@
             <?php endif; ?>
         </tbody>
     </table>
+    <?php echo $links;?>
 </div>

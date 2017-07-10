@@ -190,5 +190,21 @@ class Customer_model extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function getCustomerCount() {
+        return $this->db->count_all("customer");
+    }
+
+    public function fetchData($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("customer");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
 }
 
