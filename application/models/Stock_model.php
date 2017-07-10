@@ -42,4 +42,13 @@ class Stock_model extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function getAllRemainingQuantity() {
+        $this->db->select_sum('currentQty');
+        $result = $this->db->get('stock');
+        if ($result->num_rows() != 0) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
 }

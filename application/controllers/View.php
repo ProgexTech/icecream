@@ -147,6 +147,7 @@ class View extends CI_Controller {
     public function processPO($poId) {
         $this->load->model('customer_model');
         $this->load->model('purchaseOrder_model');
+        $this->load->model('stock_model');
         $data['poId'] = $poId;
         $data['main_content'] = "po/process_po";
         $this->load->view("layouts/main", $data);

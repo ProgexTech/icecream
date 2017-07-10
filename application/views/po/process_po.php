@@ -1,6 +1,11 @@
 <script>
     $(document).on('change', '#qty', function() {
         var qty = $(this).val();
+        var stockQty = document.getElementById('stockQty').value;
+        if(qty > stockQty){
+            qty = stockQty;
+            $('#qty').val(qty);
+        }
         var unitPrice = document.getElementById('uPrice').value;
         var total = qty * unitPrice;
         $('#tot').val(total);
@@ -13,6 +18,8 @@ $customerInfo = $this->customer_model->getCustomerById($po->customerId);
 $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 $customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
+$availableStock = $this->stock_model->getAllRemainingQuantity();
+
 ?>
 
 <div class="container-fluid">
@@ -84,6 +91,13 @@ $customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
             <label for="orderedQuantity" class="col-sm-2 control-label">Ordered Quantity</label>
             <div class="col-sm-5">
                 <label class="form-control"><?php echo $po->quantity; ?></label>
+            </div>
+            <div class="col-sm-5"><p class="form-text text-left">bags</p></div>
+        </div>
+        <div class="form-group">
+            <label for="stockQty" class="col-sm-2 control-label">Available Quantity</label>
+            <div class="col-sm-5">
+                <input readonly="true" id="stockQty" type="number" class="form-control" name="availableQty" value="<?php echo $availableStock->currentQty; ?>"/>
             </div>
             <div class="col-sm-5"><p class="form-text text-left">bags</p></div>
         </div>
