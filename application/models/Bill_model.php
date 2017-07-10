@@ -37,4 +37,14 @@ class Bill_model extends CI_Model {
         $this->db->where('id', $id);
         $this->db->delete('bill');
     }
+    
+    public function getBillByPOId($poId) {     
+        $this->db->where('poId', $poId);
+        $result = $this->db->get('bill');
+
+        if ($result->num_rows() == 1) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
 }

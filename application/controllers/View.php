@@ -156,6 +156,7 @@ class View extends CI_Controller {
     public function viewPOs() {
         $this->load->model('purchaseOrder_model');
         $this->load->model('customer_model');
+        $this->load->model('bill_model');
         
         $this->load->library('pagination');
         $total_row = $this->purchaseOrder_model->getPOCount();

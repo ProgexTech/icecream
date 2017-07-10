@@ -23,9 +23,9 @@
                     ?>
                     <?php if ($po->delivered == '1') : ?>
                         <tr class="pgx-success">
-                    <?php else : ?>
+                        <?php else : ?>
                         <tr class="pgx-danger">
-                    <?php endif; ?>
+                        <?php endif; ?>
                         <td><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
                         <td><?php echo $customerInfo->name; ?></td>
                         <td><?php echo $addressInfo->address; ?></td>
@@ -35,13 +35,18 @@
                         <td><?php echo $po->quantity; ?></td>
                         <td>
                             <?php if ($po->delivered == '1') : ?>                            
-                            <a class="btn btn-primary btn-xs" role="button"
-                               href="<?php echo base_url(); ?>view/viewPO/<?php echo urlencode(base64_encode($po->id)); ?>">Details</a>
+                                <a class="btn btn-primary btn-xs" role="button"
+                                   href="<?php echo base_url(); ?>view/viewPO/<?php echo urlencode(base64_encode($po->id)); ?>">Details</a>
+                                   <?php //$bill = $this->bill_model->getBillByPOId($po->id); echo $po->id; ?>
+<!--                                <a class="btn btn-primary btn-xs" role="button"
+                                   href="<?php //echo base_url(); ?>view/printDeliveryNote/<?php //echo urlencode(base64_encode($bill->id)); ?>">Print</a>-->
+
                             <?php else : ?>
-                            <a class="btn btn-danger btn-xs" role="button"
-                               href="<?php echo base_url(); ?>view/processPO/<?php echo urlencode(base64_encode($po->id)); ?>">Proceed</a>
-                        
-                            <?php endif; ?>
+                                <a class="btn btn-danger btn-xs" role="button"
+                                   href="<?php echo base_url(); ?>view/processPO/<?php echo urlencode(base64_encode($po->id)); ?>">Proceed</a>
+                                <a class="btn btn-primary btn-xs" role="button"
+                                   href="<?php echo base_url(); ?>view/printPO/<?php echo urlencode(base64_encode($po->id)); ?>">Print</a>
+                               <?php endif; ?>
                         </td>
                     </tr>
                     <?php
