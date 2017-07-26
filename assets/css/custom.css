@@ -110,3 +110,7 @@
 .pgx-danger {
     background-color: #ffbaba;
 }
+
+.fixed-width-110 {
+    width: 110px;
+}

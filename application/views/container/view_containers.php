@@ -28,33 +28,40 @@ if (isset($shipmentId)) {
 } else {
     echo -1;
 } ?>" />
-        <div class="form-group">
-            <label for="shippingNo">Shipping No</label>
-<?php if (isset($shipment)) : ?>
-                <input type="text" class="form-control" id="shippingNo" name="shippingNo" value="<?php echo $shipment->shippingNo; ?>" readonly="readonly" size="12px">
-<?php endif; ?>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="shippingNo" class="fixed-width-110">Shipping No</label>
+    <?php if (isset($shipment)) : ?>
+                    <input type="text" class="form-control" id="shippingNo" name="shippingNo" value="<?php echo $shipment->shippingNo; ?>" readonly="readonly">
+    <?php endif; ?>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="contCode" class="fixed-width-110">Cont.Code</label>
+                <input type="text" class="form-control" id="contCode" name="contCode" >
+            </div>
+            <div class="form-group col-md-4">
+                <label for="mWeek" class="fixed-width-110">Man.Week</label>
+                <input type="text" class="form-control" id="mWeek" name="mWeek">
+            </div>            
         </div>
-        &nbsp;
-        <div class="form-group">
-            <label for="contCode">Cont.Code</label>
-            <input type="text" class="form-control" id="contCode" name="contCode" >
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label for="qty" class="fixed-width-110">Quantity</label>
+                <input type="number" class="form-control" id="qty" name="qty">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="unloadingDate" class="fixed-width-110">Unloading Date</label>
+                <input type="text" class="form-control" id="unloadingDate" name="unloadingDate">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="storeLocation" class="fixed-width-110">Store Location</label>
+                <select class="form-control" name="storeLocation">
+                    <option value="0">Location A</option>
+                    <option value="1">Location B</option>
+                </select>
+            </div>
         </div>
-        &nbsp;
-        <div class="form-group">
-            <label for="mWeek">Man.Week</label>
-            <input type="text" class="form-control" id="mWeek" name="mWeek" size="10px">
-        </div>
-        &nbsp;
-        <div class="form-group">
-            <label for="qty">Quantity</label>
-            <input type="number" class="form-control" id="qty" name="qty" size="8px">
-        </div>
-        &nbsp;   
-        <div class="form-group">
-            <label for="unloadingDate">Unloading Date</label>
-            <input type="text" class="form-control" id="unloadingDate" name="unloadingDate" size="10px">
-        </div>
-        &nbsp;
+        <br/>
         <button type="submit" class="btn btn-primary">Add</button>
     </form>
 </div>
