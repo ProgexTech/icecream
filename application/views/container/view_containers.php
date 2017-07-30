@@ -20,6 +20,8 @@ if (isset($shipmentId)) {
 }
 ?>
 
+<?php $stores = $this->store_model->getAllStores(); ?>
+
 <div>
     <legend>Add Container</legend>
     <form class="form-inline" method="post" action="<?php echo base_url(); ?>container/add">
@@ -44,6 +46,7 @@ if (isset($shipmentId)) {
                 <input type="text" class="form-control" id="mWeek" name="mWeek">
             </div>            
         </div>
+        <br/>
         <div class="row">
             <div class="form-group col-md-4">
                 <label for="qty" class="fixed-width-110">Quantity</label>
@@ -55,10 +58,13 @@ if (isset($shipmentId)) {
             </div>
             <div class="form-group col-md-4">
                 <label for="storeLocation" class="fixed-width-110">Store Location</label>
+                <?php if ($stores) : ?>
                 <select class="form-control" name="storeLocation">
-                    <option value="0">Location A</option>
-                    <option value="1">Location B</option>
+                    <?php foreach ($stores as $store) : ?>
+                    <option value="<?php echo $store->id; ?>"><?php echo $store->name; ?></option>
+                    <?php endforeach; ?>
                 </select>
+                <?php endif; ?>
             </div>
         </div>
         <br/>
@@ -74,6 +80,7 @@ if (isset($shipmentId)) {
         <th>Cont.Code</th>
         <th>Man.Weeks</th>
         <th>Quantity</th>
+        <th>Store</th>
         <th>Unloading Date</th>
         <th>Action</th>
         </thead>
@@ -88,7 +95,13 @@ if (isset($shipmentId)) {
                         </td>
                         <td><?php echo $container->contCode; ?></td>
                         <td><?php echo $container->mWeek; ?></td>
-                        <td><?php echo $container->qty; ?></td> 
+                        <td><?php echo $container->qty; ?></td>
+                        <td>
+                            <?php 
+                            $storeLoc = $this->store_model->getStoreById($container->storeId); 
+                            if ($storeLoc) { echo $storeLoc->name; } else { echo 'N/A'; }
+                            ?>                            
+                        </td>
                         <td><?php echo $container->unloadingDate; ?></td>  
                         <td>
                             <a class="btn btn-warning btn-xs" role="button"

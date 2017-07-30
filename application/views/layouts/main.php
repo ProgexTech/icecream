@@ -94,7 +94,15 @@ function hasPermission($url) {
                                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>view/registerUser">Add New User</a></li>
-
+                                    </ul>
+                                </li>
+                            <?php endif; ?>
+                            <?php if (hasPermission("System")) : ?>
+                                <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">System<b class="caret"></b></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="<?php echo base_url(); ?>view/viewConfigure">Configure</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewSettings">Settings</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>

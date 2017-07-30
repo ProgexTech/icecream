@@ -27,7 +27,7 @@ if (isset($shipmentId)) {
             <?php endif; ?>
         </div>
         <div class="myp col-md-2 text-right"><strong><em>Man.Weeks : </em></strong></div>
-        <div class="myp col-md-4"><?php if ($shipment) { echo $shipment->mWeek; } ?></div>
+        <div class="myp col-md-4"><?php // if ($shipment) { echo $shipment->mWeek; } ?>to-do</div>
     </div>    
 </div>
 <br/><br/>

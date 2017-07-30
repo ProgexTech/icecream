@@ -58,6 +58,7 @@ class Container extends CI_Controller {
             'contCode' => $this->input->post('contCode'),
             'mWeek' => $this->input->post('mWeek'),
             'qty' => $this->input->post('qty'),
+            'storeId' => $this->input->post('storeLocation'),
             'unloadingDate' => $this->input->post('unloadingDate')
         );
 

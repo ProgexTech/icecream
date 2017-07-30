@@ -124,6 +124,7 @@ class View extends CI_Controller {
     // Container
     public function viewContainers($shipmentId) {
         $this->load->model('shipment_model');
+        $this->load->model('store_model');
         $this->load->model('container_model');
         $data['shipmentId'] = $shipmentId;
         $data['main_content'] = 'container/view_containers';
@@ -299,6 +300,7 @@ class View extends CI_Controller {
 
     public function editContainer($containerId, $shipmentId) {
         $this->load->model('shipment_model');
+        $this->load->model('store_model');
         $this->load->model('container_model');
         $data['shipmentId'] = $shipmentId;
         $data['containerId'] = $containerId;
@@ -327,4 +329,17 @@ class View extends CI_Controller {
         $data['main_content'] = "po/print_delivery_note";
         $this->load->view("layouts/main", $data);
     }
+    
+    // System
+    public function viewConfigure() {
+        $this->load->model('store_model');
+        $data['main_content'] = "system/configure";
+        $this->load->view("layouts/main", $data);
+    }
+    
+    public function viewSettings() {
+        $data['main_content'] = "system/settings";
+        $this->load->view("layouts/main", $data);
+    }
+    
 }
