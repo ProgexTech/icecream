@@ -4,7 +4,7 @@ class PurchaseOrder extends CI_Controller {
 
     public function add() {
         $this->load->model('purchaseOrder_model');
-        //$date = new DateTime();
+        $this->load->model('purchaseOrderStock_model');
 
         $poData = array(
             'customerId' => $this->input->post('customer_id'),
@@ -18,12 +18,20 @@ class PurchaseOrder extends CI_Controller {
         );
 
         $poId = $this->purchaseOrder_model->insertPO($poData);
+        
+        $poStockData = array(
+            'poId' => $poId,
+            'qty' => $this->input->post('quantity')
+        );
+        
+        $this->purchaseOrderStock_model->insertPOStock($poStockData);
 
         redirect('/view/printPO/' . urlencode(base64_encode($poId)));
     }
 
     public function finalize() {
         $this->load->model('purchaseOrder_model');
+        $this->load->model('purchaseOrderStock_model');
         $this->load->model('sale_model');
         $this->load->model('stock_model');
         $this->load->model('bill_model');

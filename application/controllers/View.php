@@ -316,6 +316,14 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
     
+    public function viewAllocations() {
+        $this->load->model('purchaseOrder_model');
+        $this->load->model('customer_model');
+        $this->load->model('purchaseOrderStock_model');
+        $data['main_content'] = "po/view_allocations";
+        $this->load->view("layouts/main", $data);
+    }
+
     public function printDeliveryNote($billId) {
         $this->load->model('purchaseOrder_model');
         $this->load->model('customer_model');
