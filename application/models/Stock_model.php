@@ -18,7 +18,7 @@ class Stock_model extends CI_Model {
 
     public function getAllInstockRecords() {
         $this->db->where('currentQty >', '0');
-        $this->db->order_by('containerId', 'DESC');
+        $this->db->order_by('containerId', 'ASC');
         $result = $this->db->get('stock');
         if ($result->num_rows() != 0) {
             return $result->result();
@@ -44,6 +44,15 @@ class Stock_model extends CI_Model {
         return FALSE;
     }
     
+    public function getAllRemainingRecords() {
+        $this->db->where('currentQty > 0');
+        $result = $this->db->get('stock');
+        if ($result->num_rows() != 0) {
+            return $result->result();
+        }
+        return FALSE;
+    }
+
     public function getAllRemainingQuantity() {
         $this->db->select_sum('currentQty');
         $result = $this->db->get('stock');
