@@ -8,13 +8,13 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 ?>
 
 <script type="text/javascript">
-function printDiv(divName) {
-    var printContents = document.getElementById(divName).innerHTML;
-    var originalContents = document.body.innerHTML;
-    document.body.innerHTML = printContents;
-    window.print();
-    document.body.innerHTML = originalContents;
-}
+    function printDiv(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+        document.body.innerHTML = printContents;
+        window.print();
+        document.body.innerHTML = originalContents;
+    }
 </script>
 
 <div id="printableArea" align="center">
@@ -26,8 +26,12 @@ function printDiv(divName) {
             <td style="padding-right: 50px;"><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
             <td style="padding-left: 350px;"><strong>DELIVERY NOTE</strong></td>
             <td style="padding-left: 210px;"><strong>Date</strong></td>
-            <td><?php  $date = new DateTime($po->createdDate);
-                            echo $date->format("Y-m-d"); ?></td>
+            <td>
+            <?php
+            $date = new DateTime($po->createdDate);
+            echo $date->format("Y-m-d");
+            ?>
+            </td>
         </tr>
     </tbody>
 </table>
@@ -40,9 +44,9 @@ function printDiv(divName) {
             <td style="padding-left: 90px; text-align: left;">DELIVERY LOCATION</td>
         </tr>
         <tr>
-            <td><?php echo $customerInfo->code.", ".$customerInfo->name." , ".$addressInfo->address; ?></td>
+            <td><?php echo $customerInfo->code . ", " . $customerInfo->name . " , " . $addressInfo->address; ?></td>
 <!--            <td>-</td>-->
-            <td><?php echo $addressInfo->region;?></td>
+            <td><?php echo $addressInfo->region; ?></td>
         </tr>
     </tbody>
 </table>
@@ -57,31 +61,31 @@ function printDiv(divName) {
             <td style="padding-left: 30px;"><strong>Qty</strong></td>
             <td><strong>Line Quantity</strong></td>
         </tr>
-        <?php 
+        <?php
         $totalQty = 0;
         $counter = 1;
-        foreach ($sales as $sale) { 
-             $totalQty += $sale->qty;
-             $stock = $this->stock_model->getStockById($sale->stockId);
-             $container = $this->container_model->getContainerById($stock->containerId);
-             $shipment = $this->shipment_model->getShipmentById($container->shipmentId);
-         ?>
-        <tr>
-            <td><?php echo $counter++; ?></td>
-            <td><?php echo $container->contCode; ?></td>
-            <td><?php echo  $shipment->shippingNo; ?></td>
-            <td><?php echo $stock->mWeek; ?></td>
-            <td><?php echo $sale->qty; ?></td>
-            <td><?php echo $sale->qty; ?></td>
-        </tr>
-        <?php }?>
+        foreach ($sales as $sale) {
+            $totalQty += $sale->qty;
+            $stock = $this->stock_model->getStockById($sale->stockId);
+            $container = $this->container_model->getContainerById($stock->containerId);
+            $shipment = $this->shipment_model->getShipmentById($container->shipmentId);
+            ?>
+            <tr>
+                <td><?php echo $counter++; ?></td>
+                <td><?php echo $container->contCode; ?></td>
+                <td><?php echo $shipment->shippingNo; ?></td>
+                <td><?php echo $stock->mWeek; ?></td>
+                <td><?php echo $sale->qty; ?></td>
+                <td><?php echo $sale->qty; ?></td>
+            </tr>
+        <?php } ?>
         <tr>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
             <td><strong>Total Quantity</strong></td>
             <td>&nbsp;</td>
-            <td><strong><?php echo $totalQty;?></strong></td>
+            <td><strong><?php echo $totalQty; ?></strong></td>
         </tr>
     </tbody>
 </table>
