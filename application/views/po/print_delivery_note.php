@@ -5,6 +5,8 @@ $sales = $this->sale_model->getSalesByBillId($bill->id);
 $customerInfo = $this->customer_model->getCustomerById($bill->customerId);
 $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
+$d = new DateTime();
+$createDate = new DateTime($po->createdDate);
 ?>
 
 <script type="text/javascript">
@@ -18,48 +20,53 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 </script>
 
 <div id="printableArea" align="center">
-    <p style="text-align: center;"><h3>Super Tech Cements</h3></p>
-<table width="100%">
-    <tbody>
-        <tr>
-            <td><strong>PO #</strong></td>
-            <td style="padding-right: 50px;"><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
-            <td style="padding-left: 350px;"><strong>DELIVERY NOTE</strong></td>
-            <td style="padding-left: 210px;"><strong>Date</strong></td>
-            <td>
-            <?php
-            $date = new DateTime($po->createdDate);
-            echo $date->format("Y-m-d");
-            ?>
-            </td>
-        </tr>
-    </tbody>
+<p style="text-align: center;"><h3>Super Tech Cements</h3></p>
+<table  border="0"  width="100%">
+    <tr>
+        <td><strong>DN #</strong></td>
+        <td>ff</td>
+        <td rowspan="2" style="text-align: center;" width="70%"><strong>DELIVERY NOTE</strong></td>
+        <td style="text-align: right;"><strong>Date</strong></td>
+        <td style="text-align: right;"><?php echo $createDate->format("d-M-Y"); ?></td>
+    </tr>
+    <tr>
+        <td><strong>PO #</strong></td>
+        <td><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
+        <td style="text-align: right;"><strong>Time</strong></td>
+        <td style="text-align: right;"><?php echo $createDate->format("h:i A"); ?></td>
+    </tr>
 </table>
-<p style="text-align: justify;"><strong>&nbsp;</strong></p>
+<p style="text-align: justify;">&nbsp;</p>
 <table border="1" width="100%">
-    <tbody>
-        <tr>
-            <td style="padding-left: 30px; text-align: left;">CUSTOMER CODE NAME &amp; ADDRESS</td>
-<!--            <td style="padding-left: 30px; text-align: left;">CUSTOMER TAX NOs</td>-->
-            <td style="padding-left: 90px; text-align: left;">DELIVERY LOCATION</td>
-        </tr>
-        <tr>
-            <td><?php echo $customerInfo->code . ", " . $customerInfo->name . " , " . $addressInfo->address; ?></td>
-<!--            <td>-</td>-->
-            <td><?php echo $addressInfo->region; ?></td>
-        </tr>
-    </tbody>
+    <tr>
+        <td width="15%" style="padding: 2px;">Customer</td>
+        <td width="50%" style="padding: 2px;"><?php echo $customerInfo->name; ?></td>
+        <td width="15%" style="padding: 2px;">Customer Code</td>
+        <td width="20%" style="padding: 2px;"><?php echo $customerInfo->code; ?></td>
+    </tr>
+    <tr>
+        <td style="padding: 2px;">Delivery Location</td>
+        <td style="padding: 2px;"><?php echo $addressInfo->address; ?></td>
+        <td style="padding: 2px;">Region</td>
+        <td style="padding: 2px;"><?php echo $addressInfo->region; ?></td>
+    </tr>
+    <tr>
+        <td style="padding: 2px;">Contact No.</td>
+        <td style="padding: 2px;"><?php echo $customerInfo->phone; ?></td>
+        <td style="padding: 2px;">Remarks</td>
+        <td style="padding: 2px;">&nbsp;</td>
+    </tr>
 </table>
-<p style="text-align: justify;"><strong>&nbsp;</strong></p>
+<p style="text-align: justify;">&nbsp;</p>
 <table  border="1" width="100%">
     <tbody>
         <tr>
-            <td><strong>#</strong></td>
-            <td><strong>Container Code</strong></td>
-            <td><strong>Shipment #</strong></td>
-            <td style="padding-left: 150px;"><strong>Man. Week</strong></td>
-            <td style="padding-left: 30px;"><strong>Qty</strong></td>
-            <td><strong>Line Quantity</strong></td>
+            <td style="text-align: center;"><strong>#</strong></td>
+            <td style="text-align: center;"><strong>Cont. Code</strong></td>
+            <td style="text-align: center;"><strong>Shipm. No.</strong></td>
+            <td style="text-align: center;"><strong>Manu. Week</strong></td>
+            <td style="text-align: center;"><strong>Quantity</strong></td>
+            <td style="text-align: center;"><strong>Line Quantity</strong></td>
         </tr>
         <?php
         $totalQty = 0;
@@ -71,21 +78,18 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             $shipment = $this->shipment_model->getShipmentById($container->shipmentId);
             ?>
             <tr>
-                <td><?php echo $counter++; ?></td>
-                <td><?php echo $container->contCode; ?></td>
-                <td><?php echo $shipment->shippingNo; ?></td>
-                <td><?php echo $stock->mWeek; ?></td>
-                <td><?php echo $sale->qty; ?></td>
-                <td><?php echo $sale->qty; ?></td>
+                <td style="padding: 2px;"><?php echo $counter++; ?></td>
+                <td style="padding: 2px;"><?php echo $container->contCode; ?></td>
+                <td style="padding: 2px;"><?php echo $shipment->shippingNo; ?></td>
+                <td style="padding: 2px;"><?php echo $stock->mWeek; ?></td>
+                <td style="padding: 2px;"><?php echo $sale->qty; ?></td>
+                <td style="padding: 2px;"><?php echo $sale->qty; ?></td>
             </tr>
         <?php } ?>
         <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td><strong>Total Quantity</strong></td>
-            <td>&nbsp;</td>
-            <td><strong><?php echo $totalQty; ?></strong></td>
+            <td colspan="4">&nbsp;</td>
+            <td style="text-align: center;"><strong>Total Quantity</strong></td>
+            <td style="padding: 2px;"><strong><?php echo $totalQty; ?></strong></td>
         </tr>
     </tbody>
 </table>
@@ -94,19 +98,27 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 <table width="100%" border="1">
     <tbody>
         <tr>
-            <td>Vehicle No</td>
-            <td>Driver's Name </td>
-            <td>Signature</td>
+            <td style="padding: 2px;">Vehicle No</td>
+            <td style="padding: 2px;">Driver's Name </td>
+            <td style="padding: 2px;">Signature</td>
         </tr>
         <tr>
-            <td><?php echo $vehicleInfo->regNo; ?></td>
-            <td><?php echo $vehicleInfo->driverName; ?></td>
-            <td>&nbsp;</td>
+            <td style="padding: 2px;"><?php echo $vehicleInfo->regNo; ?></td>
+            <td style="padding: 2px;"><?php echo $vehicleInfo->driverName; ?></td>
+            <td style="padding: 2px;">&nbsp;</td>
         </tr>
     </tbody>
 </table>
+<p style="text-align: justify;">&nbsp;</p>
 
+<table  border="1" width="100%">
+    <tr>
+        <td width="10%" style="padding: 2px;"><strong>Issued By : </strong></td>
+        <td width="90%" style="padding: 2px;">Saman</td>
+    </tr>
+</table>
 </div>
+
 <p style="text-align: justify;"></p>
 
 <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-primary"/>

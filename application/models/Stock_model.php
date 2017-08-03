@@ -17,7 +17,8 @@ class Stock_model extends CI_Model {
     }
 
     public function getAllInstockRecords() {
-        $query = $this->db->where('currentQty >', '0');
+        $this->db->where('currentQty >', '0');
+        $this->db->order_by('containerId', 'DESC');
         $result = $this->db->get('stock');
         if ($result->num_rows() != 0) {
             return $result->result();
