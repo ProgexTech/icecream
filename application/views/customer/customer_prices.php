@@ -10,8 +10,11 @@
         //alert($('#customer_code').text());
         var customerId = $('#customer_id').val();
         var price = $('#price').val();
+        var type = $('#type').val();
+        var store = $('#store').val();
         
-        $('#prices-container').load('<?php echo base_url(); ?>' + 'api/addPriceForCustomer/' + customerId + '/' + price);
+        
+        $('#prices-container').load('<?php echo base_url(); ?>' + 'api/addPriceForCustomer/' + customerId + '/' + type + '/'+ store +'/'+price);
     }
     
 </script>

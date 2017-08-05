@@ -4,8 +4,7 @@ class Customer extends CI_Controller {
 
     public function add() {
         $this->load->model('customer_model');
-        $date = new DateTime();
-
+        $date = new DateTime("now", new DateTimeZone("Asia/Colombo"));
         $customerData = array(
             'name' => $this->input->post('name'),
             'code' => $this->input->post('code'),
@@ -24,7 +23,7 @@ class Customer extends CI_Controller {
     
     public function add_unreg() {
         $this->load->model('customer_model');
-        $date = new DateTime();
+        $date = new DateTime("now", new DateTimeZone("Asia/Colombo"));
         
         $typeInfo = $this->customer_model->getCustomerTypeInfoByCode('UG');
 

@@ -20,11 +20,11 @@ $createDate = new DateTime($po->createdDate);
 </script>
 
 <div id="printableArea" align="center">
-<p style="text-align: center;"><h3>Super Tech Cements</h3></p>
+<p style="text-align: center;"><h3>Supertech Cements (Pvt) Ltd</h3></p>
 <table  border="0"  width="100%">
     <tr>
         <td><strong>DN #</strong></td>
-        <td>ff</td>
+        <td><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
         <td rowspan="2" style="text-align: center;" width="70%"><strong>DELIVERY NOTE</strong></td>
         <td style="text-align: right;"><strong>Date</strong></td>
         <td style="text-align: right;"><?php echo $createDate->format("d-M-Y"); ?></td>
@@ -114,7 +114,8 @@ $createDate = new DateTime($po->createdDate);
 <table  border="1" width="100%">
     <tr>
         <td width="10%" style="padding: 2px;"><strong>Issued By : </strong></td>
-        <td width="90%" style="padding: 2px;">Saman</td>
+        <td width="90%" style="padding: 2px;"><?php $displayName = $this->session->userdata('display_name');
+        echo $displayName;?></td>
     </tr>
 </table>
 </div>

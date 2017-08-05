@@ -1,20 +1,20 @@
 <script type="text/javascript">
 
     $(function () {
-        $("#poDate").datepicker({
-            dateFormat: "yy-mm-dd",
-            yearRange: "c-90:c",
-            changeMonth: true,
-            changeYear: true
-        });
+    $("#poDate").datepicker({
+    dateFormat: "yy-mm-dd",
+    yearRange: "c-90:c",
+    changeMonth: true,
+    changeYear: true
+    });
     });
 
     $(document).ready(function () {
 
-        $('#customer-type-combo').on('change', function (e) {
-            var typeCode = this.value;
-            $('#customer-select').load('<?php echo base_url(); ?>' + 'api/getCustomersByType/' + typeCode);
-        });
+    $('#customer-type-combo').on('change', function (e) {
+    var typeCode = this.value;
+    $('#customer-select').load('<?php echo base_url(); ?>' + 'api/getCustomersByType/' + typeCode);
+    });
 
     });
 

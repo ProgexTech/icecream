@@ -5,14 +5,20 @@ class PurchaseOrder extends CI_Controller {
     public function add() {
         $this->load->model('purchaseOrder_model');
         $this->load->model('purchaseOrderStock_model');
-
+        $this->load->model('customer_model');
+        
+        $paymentType =  $this->input->post('sale_type');
+        $customerId = $this->input->post('customer_id');
+        $storeId = $this->input->post('storeLocation');
+        $price = $this->customer_model->fetchPrice($customerId, $storeId, $paymentType);
+        
         $poData = array(
-            'customerId' => $this->input->post('customer_id'),
+            'customerId' => $customerId,
             'customerAddressId' => $this->input->post('customerAddress_id'),
             'customerVehicleId' => $this->input->post('customerVehicle_id'),
-            'customerPriceId' => $this->input->post('customerPrice_id'),
+            'customerPriceId' => $price->id,
             'deliveryType' => $this->input->post('delivery_type'),
-            'saleType' => $this->input->post('sale_type'),
+            'saleType' => $paymentType,
             'quantity' => $this->input->post('quantity'),
             'createdDate' => $this->input->post('date_time')
         );

@@ -15,7 +15,7 @@ $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 ?>
 <div id="printableArea" align="center">
-    <p style="text-align: center;"><h3>Super Tech Cements</h3></p>
+    <p style="text-align: center;"><h3>Supertech Cements (Pvt) Ltd</h3></p>
 <table width="100%">
     <tbody>
         <tr>
@@ -24,7 +24,7 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td style="padding-left: 350px;"><strong>Invoice</strong></td>
             <td style="padding-left: 210px;"><strong>Date</strong></td>
             <td><?php  $date = new DateTime($po->createdDate);
-                            echo $date->format("Y-m-d"); ?></td>
+                            echo $date->format("Y-m-d");  ?></td>
         </tr>
     </tbody>
 </table>

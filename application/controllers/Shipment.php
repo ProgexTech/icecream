@@ -6,7 +6,7 @@ class Shipment extends CI_Controller {
         $this->load->model('shipment_model');
 
         $createdUserId = $this->session->userdata('user_id');
-        $date = new DateTime();
+        $date = new DateTime("now", new DateTimeZone("Asia/Colombo"));
 
         $shipmentData = array(
             'orderId' => $this->input->post('orderId'),
@@ -42,7 +42,7 @@ class Shipment extends CI_Controller {
         $this->load->model('shipment_model');
 
         $createdUserId = $this->session->userdata('user_id');
-        $date = new DateTime();
+        $date = new DateTime("now", new DateTimeZone("Asia/Colombo"));
         $shippingId = $this->input->post('shipmentId');
         $shipmentData = array(
             'shipmentDate' => $this->input->post('shipmentDate'),

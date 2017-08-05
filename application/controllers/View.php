@@ -137,6 +137,7 @@ class View extends CI_Controller {
 
     // Purchase Order
     public function addPO() {
+        $this->load->model('store_model');
         $this->load->model('customer_model');
         $data['main_content'] = "po/add_po";
         $this->load->view("layouts/main", $data);
@@ -144,12 +145,14 @@ class View extends CI_Controller {
     
     public function newPO($customerId) {
         $this->load->model('customer_model');
+        $this->load->model('store_model');
         $data['customerId'] = $customerId;
         $data['main_content'] = "po/new_po";
         $this->load->view("layouts/main", $data);
     }
 
     public function processPO($poId) {
+        $this->load->model('store_model');
         $this->load->model('customer_model');
         $this->load->model('purchaseOrder_model');
         $this->load->model('stock_model');
@@ -291,6 +294,7 @@ class View extends CI_Controller {
     
     public function viewPrices() {
         $this->load->model('customer_model');
+        $this->load->model('store_model');
         $data['main_content'] = "customer/customer_prices";
         $this->load->view("layouts/main", $data);
     }
