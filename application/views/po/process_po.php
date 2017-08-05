@@ -1,8 +1,12 @@
 <script>
-    $(document).on('change', '#qty', function() {
+    
+    $(document).on('keyup change', '#qty', function() {
         var qty = $(this).val();
+        //alert(qty);
         var stockQty = document.getElementById('stockQty').value;
-        if(qty > stockQty){
+        //alert("stock Qty = "+stockQty+"  cur Qty = "+qty);
+        if(Number(qty) > Number(stockQty)){
+            //alert("Low Stock! Please enter a valid quantity");
             qty = stockQty;
             $('#qty').val(qty);
         }
