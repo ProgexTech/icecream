@@ -15,7 +15,7 @@ $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 ?>
 <div id="printableArea" align="center">
-    <p style="text-align: center;"><h3>Supertech Cements (Pvt) Ltd</h3></p>
+    <p style="text-align: center;"><h3>Supertech Cements Lanka (Pvt) Ltd</h3></p>
 <table width="100%">
     <tbody>
         <tr>

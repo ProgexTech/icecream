@@ -1,18 +1,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
+    function changeDriverName(driverName)
+    {
+        alert(driverName);
+        document.getElementById("driver").value = driverName;
+    }
+
     function loadPrice() {
         var storeId = document.getElementById("storeLocation").value;
         var paymentType = document.getElementById("sale_type").value;
         var customerId = document.getElementById("customerId").value;
-        //var url = "<?php echo base_url();?>"+"api/getPricesForCustomerByPaymentTypeAndLocation/";
-        var url = "<?php echo base_url();?>"+"api/getPricesForCustomerByPaymentTypeAndLocation/"+ customerId + '/' + storeId + '/'+ paymentType;
+        //var url = "<?php echo base_url(); ?>"+"api/getPricesForCustomerByPaymentTypeAndLocation/";
+        var url = "<?php echo base_url(); ?>" + "api/getPricesForCustomerByPaymentTypeAndLocation/" + customerId + '/' + storeId + '/' + paymentType;
         //alert(url);
-       $.ajax({
+        $.ajax({
             type: "POST",
             url: url,
             data: "",
             success: function(resp) {
-            //alert(resp);
+                //alert(resp);
                 document.getElementById("price").value = resp;
             }
         });
@@ -60,8 +66,9 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
             </div>
             <div class="col-md-3">
                 <?php if ($customerVehicles) : ?>
-                    <select class="form-control" name="customerVehicle_id">
+                    <select class="form-control" id="driverInfo" name="customerVehicle_id" onchange="changeDriverName(this.value)">
                         <?php foreach ($customerVehicles as $cv) : ?>
+                            <input type="hidden" value="<?php $cv->driverName; ?>" id="hiddenDriverName"/>
                             <option value="<?php echo $cv->id; ?>"><?php echo $cv->regNo; ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -92,10 +99,10 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
             </div>
             <div class="col-md-3 form-text">
                 <?php if ($customerVehicles) : ?>
-                    <p class="text-left"><?php echo $customerVehicles[0]->driverName; ?></p>
+                    <input readonly="true" type="text" class="text-left" id="driver" value=<?php echo $customerVehicles[0]->driverName; ?>"/>
                 <?php else : ?>
-                    <p class="text-left">-- No Driver --</p>
-                <?php endif; ?>
+                           <p class="text-left">-- No Driver --</p>
+                       <?php endif; ?>
             </div>
         </div>
 
@@ -152,10 +159,10 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
             <div class="col-sm-3">
                 <input type="text" readonly="true" name="price" for="price" value="0.00" class="col-sm-5 control-label" id="price">
 <!--                <select class="form-control" name="customerPrice_id">-->
-                    <?php //foreach ($customerPrices as $cp) : ?>
-                        <!--<option value="//<?php //echo $cp->id; ?>"><?php //echo $cp->price; ?></option>-->
-                    <?php //endforeach; ?>
-<!--                </select> -->
+                <?php //foreach ($customerPrices as $cp) : ?>
+                        <!--<option value="//<?php //echo $cp->id;  ?>"><?php //echo $cp->price;  ?></option>-->
+                <?php //endforeach; ?>
+                <!--                </select> -->
             </div>
         </div>
         <div class="form-group">

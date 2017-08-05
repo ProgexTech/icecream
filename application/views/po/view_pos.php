@@ -37,6 +37,8 @@
                             <?php if ($po->delivered == '1') : ?>                            
                                 <a class="btn btn-primary btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/viewPO/<?php echo urlencode(base64_encode($po->id)); ?>">Details</a>
+                            <a class="btn btn-primary btn-xs" role="button"
+                                   href="<?php echo base_url(); ?>view/printPO/<?php echo urlencode(base64_encode($po->id)); ?>">Print</a>
                                    <?php //$bill = $this->bill_model->getBillByPOId($po->id); echo $po->id; ?>
 <!--                                <a class="btn btn-primary btn-xs" role="button"
                                    href="<?php //echo base_url(); ?>view/printDeliveryNote/<?php //echo urlencode(base64_encode($bill->id)); ?>">Print</a>-->
