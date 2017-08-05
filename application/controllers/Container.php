@@ -37,11 +37,17 @@ class Container extends CI_Controller {
 
     public function remove($containerId) {
         $this->load->model('container_model');
+        $this->load->model('stock_model');
 
         $cId = base64_decode(urldecode($containerId));
         $containerRow = $this->container_model->getContainerById($cId);
         $shipmentId = urlencode(base64_encode($containerRow->shipmentId));
-        $this->container_model->remove($cId);
+
+        $stock = $this->stock_model->getStockByContainerId($cId);
+        if ($stock->currentQty === $containerRow->qty) {
+            $this->container_model->remove($cId);
+            $this->stock_model->removeByContainerId($cId);
+        }
 
         $url = '/view/viewContainers/' . $shipmentId;
         redirect($url);

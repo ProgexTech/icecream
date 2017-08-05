@@ -34,7 +34,7 @@ class Stock_model extends CI_Model {
         $this->db->update('stock', $data);
     }
 
-    public function getStockById($id) {     
+    public function getStockById($id) {
         $this->db->where('id', $id);
         $result = $this->db->get('stock');
 
@@ -43,7 +43,7 @@ class Stock_model extends CI_Model {
         }
         return FALSE;
     }
-    
+
     public function getAllRemainingRecords() {
         $this->db->where('currentQty > 0');
         $result = $this->db->get('stock');
@@ -61,4 +61,20 @@ class Stock_model extends CI_Model {
         }
         return FALSE;
     }
+
+    public function removeByContainerId($conId) {
+        $this->db->where('containerId', $conId);
+        $this->db->delete('stock');
+    }
+
+    public function getStockByContainerId($conId) {
+        $this->db->where('containerId', $conId);
+        $result = $this->db->get('stock');
+
+        if ($result->num_rows() == 1) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
+
 }
