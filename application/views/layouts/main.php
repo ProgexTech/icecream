@@ -76,6 +76,7 @@ function hasPermission($url) {
                                     <ul class="dropdown-menu">
                                         <li><a href="<?php echo base_url(); ?>view/addPO">Add Purchase Order</a></li>
                                         <li><a href="<?php echo base_url(); ?>view/viewPOs">View Purchase Orders</a></li>
+                                        <li><a href="<?php echo base_url(); ?>view/viewDeliveryNotes">View Delivery Notes</a></li>
                                         <li><a href="<?php echo base_url(); ?>view/viewAllocations">View Pending Allocations</a></li>
                                     </ul>
                                 </li>

@@ -6,12 +6,12 @@ class PurchaseOrder extends CI_Controller {
         $this->load->model('purchaseOrder_model');
         $this->load->model('purchaseOrderStock_model');
         $this->load->model('customer_model');
-        
-        $paymentType =  $this->input->post('sale_type');
+
+        $paymentType = $this->input->post('sale_type');
         $customerId = $this->input->post('customer_id');
         $storeId = $this->input->post('storeLocation');
         $price = $this->customer_model->fetchPrice($customerId, $storeId, $paymentType);
-        
+
         $poData = array(
             'customerId' => $customerId,
             'customerAddressId' => $this->input->post('customerAddress_id'),
@@ -24,12 +24,12 @@ class PurchaseOrder extends CI_Controller {
         );
 
         $poId = $this->purchaseOrder_model->insertPO($poData);
-        
+
         $poStockData = array(
             'poId' => $poId,
             'qty' => $this->input->post('quantity')
         );
-        
+
         $this->purchaseOrderStock_model->insertPOStock($poStockData);
 
         redirect('/view/printPO/' . urlencode(base64_encode($poId)));
@@ -49,23 +49,23 @@ class PurchaseOrder extends CI_Controller {
         $po = $this->purchaseOrder_model->getPOById($poId);
 
         $amount = $uPrice * $qty;
+        $dt = new DateTime("now", new DateTimeZone("Asia/Colombo"));
 
         $billData = array(
             'customerId' => $po->customerId,
             'poId' => $poId,
             'userId' => $this->session->userdata('user_id'),
             'amount' => $amount,
+            'date' => $dt->format('Y-m-d H:i:s'),
             'qty' => $qty
         );
-
         $billId = $this->bill_model->insertBill($billData);
 
         $tempQty = $qty;
 
         $allStock = $this->stock_model->getAllInstockRecords();
-        
-        if ($allStock)
-        {
+
+        if ($allStock) {
             foreach ($allStock as $row) {
                 $stockQty = $row->currentQty;
                 $stockId = $row->id;
@@ -97,9 +97,9 @@ class PurchaseOrder extends CI_Controller {
                 }
             }
         }
-        
+
         $this->purchaseOrder_model->setUpdateAsDelivered($poId);
-        
+
         redirect('/view/printDeliveryNote/' . urlencode(base64_encode($billId)));
     }
 

@@ -38,7 +38,7 @@ class View extends CI_Controller {
         $total_row = $this->order_model->getOrderCount();
 
         $config = array();
-        $config["base_url"] = base_url() . "view/viewOrders";        
+        $config["base_url"] = base_url() . "view/viewOrders";
         $config["total_rows"] = $total_row;
         $config["per_page"] = PAGINATION_NUM_RECORDS_PER_PAGE;
         $config['use_page_numbers'] = TRUE;
@@ -50,10 +50,10 @@ class View extends CI_Controller {
         //$config['next_link'] = '<strong>>></strong>';
         //$config['prev_link'] = '<strong><<</strong>';
         $config["uri_segment"] = 3;
-        
+
         // Bootstrap styles
         $config["full_tag_open"] = '<ul class="pagination pagination-sm">';
-        $config["full_tag_close"] = '</ul>';	
+        $config["full_tag_close"] = '</ul>';
         $config["first_link"] = "&laquo;";
         $config["first_tag_open"] = "<li>";
         $config["first_tag_close"] = "</li>";
@@ -142,7 +142,7 @@ class View extends CI_Controller {
         $data['main_content'] = "po/add_po";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function newPO($customerId) {
         $this->load->model('customer_model');
         $this->load->model('store_model');
@@ -160,17 +160,17 @@ class View extends CI_Controller {
         $data['main_content'] = "po/process_po";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewPOs() {
         $this->load->model('purchaseOrder_model');
         $this->load->model('customer_model');
         $this->load->model('bill_model');
-        
+
         $this->load->library('pagination');
         $total_row = $this->purchaseOrder_model->getPOCount();
 
         $config = array();
-        $config["base_url"] = base_url() . "view/viewPOs";        
+        $config["base_url"] = base_url() . "view/viewPOs";
         $config["total_rows"] = $total_row;
         $config["per_page"] = PAGINATION_NUM_RECORDS_PER_PAGE;
         $config['use_page_numbers'] = TRUE;
@@ -182,10 +182,10 @@ class View extends CI_Controller {
         //$config['next_link'] = '<strong>>></strong>';
         //$config['prev_link'] = '<strong><<</strong>';
         $config["uri_segment"] = 3;
-        
+
         // Bootstrap styles
         $config["full_tag_open"] = '<ul class="pagination pagination-sm">';
-        $config["full_tag_close"] = '</ul>';	
+        $config["full_tag_close"] = '</ul>';
         $config["first_link"] = "&laquo;";
         $config["first_tag_open"] = "<li>";
         $config["first_tag_close"] = "</li>";
@@ -208,11 +208,11 @@ class View extends CI_Controller {
         $offset = ($page == 0) ? 0 : ($page - 1) * $config["per_page"];
         $data["results"] = $this->purchaseOrder_model->fetchData($config["per_page"], $offset);
         $data["links"] = $this->pagination->create_links();
-                
+
         $data['main_content'] = "po/view_pos";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewPO() {
         $this->load->model('purchaseOrder_model');
         $this->load->model('customer_model');
@@ -229,13 +229,13 @@ class View extends CI_Controller {
 
     public function viewCustomers() {
         $this->load->model('customer_model');
-        
+
         $this->load->library('pagination');
- 
+
         $total_row = $this->customer_model->getCustomerCount();
 
         $config = array();
-        $config["base_url"] = base_url() . "view/viewCustomers";        
+        $config["base_url"] = base_url() . "view/viewCustomers";
         $config["total_rows"] = $total_row;
         $config["per_page"] = PAGINATION_NUM_RECORDS_PER_PAGE;
         $config['use_page_numbers'] = TRUE;
@@ -247,10 +247,10 @@ class View extends CI_Controller {
         //$config['next_link'] = '<strong>>></strong>';
         //$config['prev_link'] = '<strong><<</strong>';
         $config["uri_segment"] = 3;
-        
+
         // Bootstrap styles
         $config["full_tag_open"] = '<ul class="pagination pagination-sm">';
-        $config["full_tag_close"] = '</ul>';	
+        $config["full_tag_close"] = '</ul>';
         $config["first_link"] = "&laquo;";
         $config["first_tag_open"] = "<li>";
         $config["first_tag_close"] = "</li>";
@@ -273,7 +273,7 @@ class View extends CI_Controller {
         $offset = ($page == 0) ? 0 : ($page - 1) * $config["per_page"];
         $data["results"] = $this->customer_model->fetchData($config["per_page"], $offset);
         $data["links"] = $this->pagination->create_links();
-        
+
         $data['main_content'] = "customer/view_customers";
         $this->load->view("layouts/main", $data);
     }
@@ -291,7 +291,7 @@ class View extends CI_Controller {
         $data['main_content'] = "customer/add_customer_vehicle";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewPrices() {
         $this->load->model('customer_model');
         $this->load->model('store_model');
@@ -323,7 +323,7 @@ class View extends CI_Controller {
         $data['main_content'] = "po/print_po";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewAllocations() {
         $this->load->model('purchaseOrder_model');
         $this->load->model('customer_model');
@@ -340,22 +340,75 @@ class View extends CI_Controller {
         $this->load->model('bill_model');
         $this->load->model('container_model');
         $this->load->model('shipment_model');
-        
+
         $data['billId'] = $billId;
         $data['main_content'] = "po/print_delivery_note";
         $this->load->view("layouts/main", $data);
     }
-    
+
     // System
     public function viewConfigure() {
         $this->load->model('store_model');
         $data['main_content'] = "system/configure";
         $this->load->view("layouts/main", $data);
     }
-    
+
     public function viewSettings() {
         $data['main_content'] = "system/settings";
         $this->load->view("layouts/main", $data);
     }
-    
+
+    public function viewDeliveryNotes() {
+        $this->load->model('purchaseOrder_model');
+        $this->load->model('customer_model');
+        $this->load->model('bill_model');
+        $this->load->model('sale_model');
+
+        $this->load->library('pagination');
+        $total_row = $this->purchaseOrder_model->getPOCount();
+
+        $config = array();
+        $config["base_url"] = base_url() . "view/viewDeliveryNotes";
+        $config["total_rows"] = $total_row;
+        $config["per_page"] = PAGINATION_NUM_RECORDS_PER_PAGE;
+        $config['use_page_numbers'] = TRUE;
+        $config['num_links'] = $total_row;
+        //$config['cur_tag_open'] = ' ';
+        //$config['cur_tag_close'] = ' ';
+        //$config['num_tag_open'] = ' ';
+        //$config['num_tag_close'] = ' ';
+        //$config['next_link'] = '<strong>>></strong>';
+        //$config['prev_link'] = '<strong><<</strong>';
+        $config["uri_segment"] = 3;
+
+        // Bootstrap styles
+        $config["full_tag_open"] = '<ul class="pagination pagination-sm">';
+        $config["full_tag_close"] = '</ul>';
+        $config["first_link"] = "&laquo;";
+        $config["first_tag_open"] = "<li>";
+        $config["first_tag_close"] = "</li>";
+        $config["last_link"] = "&raquo;";
+        $config["last_tag_open"] = "<li>";
+        $config["last_tag_close"] = "</li>";
+        $config['next_link'] = '&gt;';
+        $config['next_tag_open'] = '<li>';
+        $config['next_tag_close'] = '<li>';
+        $config['prev_link'] = '&lt;';
+        $config['prev_tag_open'] = '<li>';
+        $config['prev_tag_close'] = '<li>';
+        $config['cur_tag_open'] = '<li class="active"><a href="#">';
+        $config['cur_tag_close'] = '</a></li>';
+        $config['num_tag_open'] = '<li>';
+        $config['num_tag_close'] = '</li>';
+
+        $this->pagination->initialize($config);
+        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+        $offset = ($page == 0) ? 0 : ($page - 1) * $config["per_page"];
+        $data["results"] = $this->bill_model->fetchData($config["per_page"], $offset);
+        $data["links"] = $this->pagination->create_links();
+
+        $data['main_content'] = "po/view_dns";
+        $this->load->view("layouts/main", $data);
+    }
+
 }

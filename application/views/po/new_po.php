@@ -1,7 +1,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script type="text/javascript">
-    function changeDriverName(driverName)
+    function changeDriverName()
     {
+        var driverName = document.getElementById("hiddenDriverName").value;
         alert(driverName);
         document.getElementById("driver").value = driverName;
     }
@@ -68,7 +69,7 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
                 <?php if ($customerVehicles) : ?>
                     <select class="form-control" id="driverInfo" name="customerVehicle_id" onchange="changeDriverName(this.value)">
                         <?php foreach ($customerVehicles as $cv) : ?>
-                            <input type="hidden" value="<?php $cv->driverName; ?>" id="hiddenDriverName"/>
+<!--                            <input type="hidden" value="<?php //echo $cv->driverName; ?>" id="hiddenDriverName"/>-->
                             <option value="<?php echo $cv->id; ?>"><?php echo $cv->regNo; ?></option>
                         <?php endforeach; ?>
                     </select>
@@ -99,7 +100,7 @@ $customerVehicles = $this->customer_model->getAllVehiclesForCustomer(base64_deco
             </div>
             <div class="col-md-3 form-text">
                 <?php if ($customerVehicles) : ?>
-                    <input readonly="true" type="text" class="text-left" id="driver" value=<?php echo $customerVehicles[0]->driverName; ?>"/>
+                    <input readonly="true" type="text" class="text-left" id="driver" value="<?php echo $customerVehicles[0]->driverName; ?>"/>
                 <?php else : ?>
                            <p class="text-left">-- No Driver --</p>
                        <?php endif; ?>

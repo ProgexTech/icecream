@@ -8,11 +8,11 @@
     }
 </script>
 <?php
-$po = $this->purchaseOrder_model->getPOById(base64_decode(urldecode($poId)));
-$customerInfo = $this->customer_model->getCustomerById($po->customerId);
-$customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
-$addressInfo = $this->customer_model->getAddress($po->customerAddressId);
-$vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
+$bill = $this->purchaseOrder_model->getPOById(base64_decode(urldecode($poId)));
+$customerInfo = $this->customer_model->getCustomerById($bill->customerId);
+$customerPrice = $this->customer_model->getPricesById($bill->customerPriceId);
+$addressInfo = $this->customer_model->getAddress($bill->customerAddressId);
+$vehicleInfo = $this->customer_model->getVehicle($bill->customerVehicleId);
 ?>
 <div id="printableArea" align="center">
     <p style="text-align: center;"><h3>Supertech Cements Lanka (Pvt) Ltd</h3></p>
@@ -20,10 +20,10 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
     <tbody>
         <tr>
             <td><strong>PO #</strong></td>
-            <td style="padding-right: 50px;"><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
+            <td style="padding-right: 50px;"><?php echo str_pad($bill->id, 6, '0', STR_PAD_LEFT); ?></td>
             <td style="padding-left: 350px;"><strong>Invoice</strong></td>
             <td style="padding-left: 210px;"><strong>Date</strong></td>
-            <td><?php  $date = new DateTime($po->createdDate);
+            <td><?php  $date = new DateTime($bill->createdDate);
                             echo $date->format("Y-m-d");  ?></td>
         </tr>
     </tbody>
@@ -56,13 +56,13 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td><strong>Line Total</strong></td>
         </tr>
         <tr>
-            <td><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
-            <td><?php echo $po->deliveryType; ?></td>
-            <td><?php echo $po->saleType; ?></td>
+            <td><?php echo str_pad($bill->id, 6, '0', STR_PAD_LEFT); ?></td>
+            <td><?php echo $bill->deliveryType; ?></td>
+            <td><?php echo $bill->saleType; ?></td>
             <td>&nbsp;</td>
-            <td><?php echo $po->quantity; ?></td>
+            <td><?php echo $bill->quantity; ?></td>
             <td><?php echo $customerPrice[0]->price; ?></td>
-            <td><?php echo $po->quantity*$customerPrice[0]->price;  ?></td>
+            <td><?php echo $bill->quantity*$customerPrice[0]->price;  ?></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -71,7 +71,7 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td><strong>Total</strong></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td><strong><?php echo $po->quantity*$customerPrice[0]->price;?></strong></td>
+            <td><strong><?php echo $bill->quantity*$customerPrice[0]->price;?></strong></td>
         </tr>
     </tbody>
 </table>

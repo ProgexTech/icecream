@@ -2,11 +2,11 @@
 $bill = $this->bill_model->getBillById(base64_decode(urldecode($billId)));
 $po = $this->purchaseOrder_model->getPOById($bill->poId);
 $sales = $this->sale_model->getSalesByBillId($bill->id);
-$customerInfo = $this->customer_model->getCustomerById($bill->customerId);
+$customerInfo = $this->customer_model->getCustomerById($po->customerId);
 $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
 $d = new DateTime();
-$createDate = new DateTime($po->createdDate);
+$createDate = new DateTime($bill->date);
 ?>
 
 <script type="text/javascript">
@@ -24,7 +24,7 @@ $createDate = new DateTime($po->createdDate);
 <table  border="0"  width="100%">
     <tr>
         <td><strong>DN #</strong></td>
-        <td><?php echo str_pad($po->id, 6, '0', STR_PAD_LEFT); ?></td>
+        <td><?php echo str_pad($bill->id, 6, '0', STR_PAD_LEFT); ?></td>
         <td rowspan="2" style="text-align: center;" width="70%"><strong>DELIVERY NOTE</strong></td>
         <td style="text-align: right;"><strong>Date</strong></td>
         <td style="text-align: right;"><?php echo $createDate->format("d-M-Y"); ?></td>
