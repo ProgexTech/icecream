@@ -14,13 +14,13 @@
             <?php
             if ($allocations):
                 foreach ($allocations as $alloc) : ?>
-                    <?php $po = $this->purchaseOrder_model->getPOById($alloc->poId); ?>
-                    <?php $customer = $this->customer_model->getCustomerById($po->customerId); ?>
+                    <?php $bill = $this->purchaseOrder_model->getPOById($alloc->poId); ?>
+                    <?php $customer = $this->customer_model->getCustomerById($bill->customerId); ?>
                     <tr>
                         <td><?php echo $alloc->poId; ?></td>
                         <td><?php echo $alloc->qty; ?></td>
                         <td><?php echo $customer->code; ?></td>
-                        <td><?php echo $po->createdDate; ?></td>
+                        <td><?php echo $bill->createdDate; ?></td>
                     </tr>
                     <?php
                 endforeach;

@@ -47,4 +47,16 @@ class Bill_model extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function fetchData($limit, $start) {
+        $this->db->limit($limit, $start);
+        $query = $this->db->get("bill");
+        if ($query->num_rows() > 0) {
+            foreach ($query->result() as $row) {
+                $data[] = $row;
+            }
+            return $data;
+        }
+        return false;
+    }
 }

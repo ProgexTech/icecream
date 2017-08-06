@@ -206,5 +206,16 @@ class Customer_model extends CI_Model {
         }
         return false;
     }
+    
+    public function fetchPrice($customerId, $storeId, $paymentType){
+        $condition = array('customerId' => $customerId, 'storeId' => $storeId, 'type' => $paymentType);
+        $this->db->where($condition);
+        $result = $this->db->get('customer_price');
+
+        if ($result->num_rows() != 0) {
+            return $result->row(0);
+        }
+        return FALSE;
+    }
 }
 

@@ -1,8 +1,12 @@
 <script>
-    $(document).on('change', '#qty', function() {
+    
+    $(document).on('keyup change', '#qty', function() {
         var qty = $(this).val();
+        //alert(qty);
         var stockQty = document.getElementById('stockQty').value;
-        if(qty > stockQty){
+        //alert("stock Qty = "+stockQty+"  cur Qty = "+qty);
+        if(Number(qty) > Number(stockQty)){
+            //alert("Low Stock! Please enter a valid quantity");
             qty = stockQty;
             $('#qty').val(qty);
         }
@@ -13,11 +17,11 @@
 </script>
 
 <?php
-$po = $this->purchaseOrder_model->getPOById(base64_decode(urldecode($poId)));
-$customerInfo = $this->customer_model->getCustomerById($po->customerId);
-$addressInfo = $this->customer_model->getAddress($po->customerAddressId);
-$vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
-$customerPrice = $this->customer_model->getPricesById($po->customerPriceId);
+$bill = $this->purchaseOrder_model->getPOById(base64_decode(urldecode($poId)));
+$customerInfo = $this->customer_model->getCustomerById($bill->customerId);
+$addressInfo = $this->customer_model->getAddress($bill->customerAddressId);
+$vehicleInfo = $this->customer_model->getVehicle($bill->customerVehicleId);
+$customerPrice = $this->customer_model->getPricesById($bill->customerPriceId);
 $availableStock = $this->stock_model->getAllRemainingQuantity();
 
 ?>
@@ -79,10 +83,10 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
         <input type="hidden" name="poId" value="<?php echo $poId; ?>"/>
 
         <div class="form-group">
-            <label for="date_time" class="col-sm-2 control-label">Date/Time</label>
+            <label for="date_time" class="col-sm-2 control-label">Purchase Order Date</label>
             <div class="col-sm-5 ">
                 <label class="form-control">
-                    <?php $date = new DateTime($po->createdDate);
+                    <?php $date = new DateTime($bill->createdDate);
                     echo $date->format("Y-m-d");
                     ?></label>
             </div>
@@ -90,7 +94,7 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
         <div class="form-group">
             <label for="orderedQuantity" class="col-sm-2 control-label">Ordered Quantity</label>
             <div class="col-sm-5">
-                <label class="form-control"><?php echo $po->quantity; ?></label>
+                <label class="form-control"><?php echo $bill->quantity; ?></label>
             </div>
             <div class="col-sm-5"><p class="form-text text-left">bags</p></div>
         </div>
@@ -104,7 +108,7 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
         <div class="form-group">
             <label for="quantity" class="col-sm-2 control-label">Issuing Quantity</label>
             <div class="col-sm-5">
-                <input id="qty" type="number" class="form-control" name="issuedQty" value="<?php echo $po->quantity; ?>"/>
+                <input id="qty" type="number" class="form-control" name="issuedQty" value="<?php echo $bill->quantity; ?>"/>
             </div>
             <div class="col-sm-5"><p class="form-text text-left">bags</p></div>
         </div>
@@ -118,20 +122,20 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
         <div class="form-group">
             <label for="total" class="col-sm-2 control-label">Total</label>
             <div class="col-sm-5">
-                <input id="tot" type="text" name="total" readonly="true" step="0.01" class="form-control" 
-                       value="<?php echo number_format((float)($po->quantity * $customerPrice[0]->price), 2, '.', ''); ?>"/>
+                <input id="tot" type="number" name="total" readonly="true" step="0.01" class="form-control" 
+                       value="<?php echo number_format((float)($bill->quantity * $customerPrice[0]->price), 2, '.', ''); ?>"/>
             </div>
         </div>
         <div class="form-group">
             <label for="sale_type" class="col-sm-2 control-label">Type of Sale</label>
             <div class="col-sm-5">
-                <input type="text" readonly="true" class="form-control" value="<?php echo $po->saleType; ?>"/>
+                <input type="text" readonly="true" class="form-control" value="<?php echo $bill->saleType; ?>"/>
             </div>
         </div>
         <div class="form-group">
             <label for="delivery_type" class="col-sm-2 control-label">Delivery Type</label>
             <div class="col-sm-5">
-                 <input type="text" readonly="true" class="form-control" value="<?php echo $po->deliveryType; ?>"/>
+                 <input type="text" readonly="true" class="form-control" value="<?php echo $bill->deliveryType; ?>"/>
             </div>
         </div>
         <div class="form-group">

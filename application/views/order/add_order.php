@@ -26,7 +26,7 @@
             <div class="form-group">
                 <label>Date</label>
                 <input type="date" class="form-control" id="orderDate" rows="3" name="orderDate" 
-                       value="<?php $date = new DateTime(); echo $date->format("Y-m-d") ?>"/>
+                       value="<?php $date = new DateTime("now", new DateTimeZone("Asia/Colombo")); echo $date->format("Y-m-d") ?>"/>
             </div>
             <div class="form-group">
                 <label>Reference No</label>
