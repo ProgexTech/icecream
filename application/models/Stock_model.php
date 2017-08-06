@@ -61,4 +61,16 @@ class Stock_model extends CI_Model {
         }
         return FALSE;
     }
+    
+    public function getAllContainersCount() {
+        $result = $this->db->get('stock');
+        return $result->num_rows();
+    }
+    
+    public function getAllNonEmptyContainersCount() {
+        $this->db->where('currentQty > 0');
+        $result = $this->db->get('stock');
+        return $result->num_rows();
+    }
+    
 }
