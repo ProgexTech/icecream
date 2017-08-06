@@ -3,13 +3,35 @@
     
     <div class="container-fluid">
         <div class="col-md-2 text-right"><h4><strong>Current Stock</strong></h4></div>
-        <div class="col-md-10">
+        <div class="col-md-2">
             <h4>
                 <?php                
                 $availableStock = $this->stock_model->getAllRemainingQuantity();
                 if ($availableStock) { echo ': '.$availableStock->currentQty.' bags'; }
                 ?>
             </h4>
+        </div>
+        <div class="col-md-2 text-right"><h4><strong>Containers</strong></h4></div>
+        <div class="col-md-3">
+            <h4> : 
+                <?php                
+                $allCount = $this->stock_model->getAllContainersCount();
+                $nonEmptyCount = $this->stock_model->getAllNonEmptyContainersCount();
+                echo $nonEmptyCount.' out of '.$allCount.'';
+                ?>
+            </h4>
+        </div>
+        <div class="col-md-2 text-right">
+            <?php $stores = $this->store_model->getAllStores(); ?>
+            <select class="form-control" name="storeLocation" id="storeLocation-combo">
+                <option value="-1">ALL</option>
+                <?php foreach ($stores as $store) : ?>
+                    <option value="<?php echo $store->id; ?>"><?php echo $store->name; ?></option>
+                <?php endforeach; ?>                
+            </select>
+        </div>
+        <div class="col-md-1">
+            <a class="btn btn-default btn-primary" href="<?php echo base_url(); ?>view/" role="button">Search</a>
         </div>
     </div>
     <hr/>
