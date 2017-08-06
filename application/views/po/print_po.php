@@ -61,8 +61,8 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td><?php echo $po->saleType; ?></td>
             <td>&nbsp;</td>
             <td><?php echo $po->quantity; ?></td>
-            <td><?php echo $customerPrice[0]->price; ?></td>
-            <td><?php echo $po->quantity*$customerPrice[0]->price;  ?></td>
+            <td><?php echo number_format((float)($customerPrice[0]->price), 2, '.', ''); ?></td>
+            <td><?php echo number_format((float)($po->quantity*$customerPrice[0]->price), 2, '.', '');  ?></td>
         </tr>
         <tr>
             <td>&nbsp;</td>
@@ -71,7 +71,7 @@ $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
             <td><strong>Total</strong></td>
             <td>&nbsp;</td>
             <td>&nbsp;</td>
-            <td><strong><?php echo $po->quantity*$customerPrice[0]->price;?></strong></td>
+            <td><strong><?php echo number_format((float)($po->quantity*$customerPrice[0]->price), 2, '.', '');?></strong></td>
         </tr>
     </tbody>
 </table>

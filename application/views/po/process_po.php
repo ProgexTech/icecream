@@ -111,13 +111,15 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
         <div class="form-group">
             <label for="price" class="col-sm-2 control-label">Unit Price</label>
             <div class="col-sm-5">
-                <input type="number" step="0.01"  readonly="true" id="uPrice" name="unitPrice" class="form-control" value="<?php echo $customerPrice[0]->price; ?>"/>
+                <input type="text" step="0.01"  readonly="true" id="uPrice" name="unitPrice" class="form-control" 
+                       value="<?php echo number_format((float)($customerPrice[0]->price), 2, '.', ''); ?>"/>
             </div>
         </div>
         <div class="form-group">
             <label for="total" class="col-sm-2 control-label">Total</label>
             <div class="col-sm-5">
-                <input id="tot" type="number" name="total" readonly="true" step="0.01" class="form-control" value="<?php echo $po->quantity * $customerPrice[0]->price; ?>"/>
+                <input id="tot" type="text" name="total" readonly="true" step="0.01" class="form-control" 
+                       value="<?php echo number_format((float)($po->quantity * $customerPrice[0]->price), 2, '.', ''); ?>"/>
             </div>
         </div>
         <div class="form-group">
