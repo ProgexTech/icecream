@@ -88,11 +88,13 @@ class View extends CI_Controller {
         $this->load->view("layouts/main", $data);
     }
 
-    public function viewStock() {
+    public function viewStock($storeType = NULL) {
         $this->load->model('stock_model');
         $this->load->model('order_model');
         $this->load->model('shipment_model');
         $this->load->model('container_model');
+        $this->load->model('store_model');
+        $data['storeType'] = $storeType;
         $data['main_content'] = 'order/view_stock';
         $this->load->view("layouts/main", $data);
     }
