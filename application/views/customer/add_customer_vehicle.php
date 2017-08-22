@@ -3,20 +3,21 @@ if (isset($customerId)) {
     $customer = $this->customer_model->getCustomerById(base64_decode(urldecode($customerId)));
 }
 ?>
-
 <div>
     <legend>Add Vehicle</legend>
     <form class="form-inline" method="post" action="<?php echo base_url(); ?>customer/addVehicle">
-        <input type="hidden" name="customerId" value="<?php if ($customerId) {
-    echo $customerId;
-} else {
-    echo -1;
-} ?>" />
+        <input type="hidden" name="customerId" value="<?php
+        if ($customerId) {
+            echo $customerId;
+        } else {
+            echo -1;
+        }
+        ?>" />
         <div class="form-group">
             <label for="customerId">Customer Code</label>
-<?php if (isset($customer)) : ?>
+            <?php if (isset($customer)) : ?>
                 <input type="text" class="form-control" id="orderNo" name="cCode" value="<?php echo $customer->code; ?>" readonly="readonly">
-<?php endif; ?>
+            <?php endif; ?>
         </div>
         &nbsp;
         <div class="form-group">
@@ -43,7 +44,6 @@ if (isset($customerId)) {
     </form>
 </div>
 <br/><br/>
-
 <div id="div-table">
     <legend>All Vehicles</legend>
     <table class="table table-striped">
@@ -65,22 +65,22 @@ if (isset($customerId)) {
                         <td><?php echo $address->regNo; ?></td>
                         <td><?php echo $address->type; ?></td>
                         <td><?php echo $address->capacity; ?></td>
-                        <td><?php echo $address->driverName; ?></td>
+                        <td>N/A</td>
                         <td>
                             <!---<a class="btn btn-warning btn-xs" role="button"
-                               href="<?php echo base_url(); ?>view/editVehicle/<?php //echo urlencode(base64_encode($id)); ?>/<?php //echo $customerId; ?>">Edit</a>-->
+                               href="<?php echo base_url(); ?>view/editVehicle/<?php //echo urlencode(base64_encode($id));     ?>/<?php //echo $customerId;     ?>">Edit</a>-->
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>customer/removeVehicle/<?php echo urlencode(base64_encode($id)); ?>/<?php echo $customerId; ?>">Remove</a>
                         </td>
                     </tr>
-        <?php
-    endforeach;
-else:
-    ?>
+                    <?php
+                endforeach;
+            else:
+                ?>
                 <tr>
                     <td colspan="9">No Entries</td>
                 </tr>
-<?php endif; ?>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>

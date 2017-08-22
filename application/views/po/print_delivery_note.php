@@ -5,10 +5,10 @@ $sales = $this->sale_model->getSalesByBillId($bill->id);
 $customerInfo = $this->customer_model->getCustomerById($po->customerId);
 $addressInfo = $this->customer_model->getAddress($po->customerAddressId);
 $vehicleInfo = $this->customer_model->getVehicle($po->customerVehicleId);
+$driverInfo = $this->customer_model->getDriver($po->customerDriverId);
 $d = new DateTime();
 $createDate = new DateTime($bill->date);
 ?>
-
 <script type="text/javascript">
     function printDiv(divName) {
         var printContents = document.getElementById(divName).innerHTML;
@@ -18,9 +18,8 @@ $createDate = new DateTime($bill->date);
         document.body.innerHTML = originalContents;
     }
 </script>
-
 <div id="printableArea" align="center">
-<p style="text-align: center;"><h3>Supertech Cements Lanka (Pvt) Ltd</h3></p>
+    <p style="text-align: center;"><h3>Supertech Cements Lanka (Pvt) Ltd</h3></p>
 <table  border="0"  width="100%">
     <tr>
         <td><strong>DN #</strong></td>
@@ -104,22 +103,20 @@ $createDate = new DateTime($bill->date);
         </tr>
         <tr>
             <td style="padding: 2px;"><?php echo $vehicleInfo->regNo; ?></td>
-            <td style="padding: 2px;"><?php echo $vehicleInfo->driverName; ?></td>
+            <td style="padding: 2px;"><?php echo $driverInfo->name; ?></td>
             <td style="padding: 2px;">&nbsp;</td>
         </tr>
     </tbody>
 </table>
 <p style="text-align: justify;">&nbsp;</p>
-
 <table  border="1" width="100%">
     <tr>
         <td width="10%" style="padding: 2px;"><strong>Issued By : </strong></td>
         <td width="90%" style="padding: 2px;"><?php $displayName = $this->session->userdata('display_name');
-        echo $displayName;?></td>
+        echo $displayName;
+        ?></td>
     </tr>
 </table>
 </div>
-
 <p style="text-align: justify;"></p>
-
 <input type="button" onclick="printDiv('printableArea')" value="Print" class="btn btn-primary"/>
