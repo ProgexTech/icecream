@@ -1,5 +1,1 @@
-<?php
-
-class Bill extends CI_Controller {
-    
-}
+<?phpclass Bill extends CI_Controller {    }
