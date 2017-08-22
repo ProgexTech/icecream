@@ -68,7 +68,7 @@ if (isset($customerId)) {
                         <td>N/A</td>
                         <td>
                             <!---<a class="btn btn-warning btn-xs" role="button"
-                               href="<?php echo base_url(); ?>view/editVehicle/<?php //echo urlencode(base64_encode($id));     ?>/<?php //echo $customerId;     ?>">Edit</a>-->
+                               href="<?php echo base_url(); ?>view/editVehicle/<?php //echo urlencode(base64_encode($id));      ?>/<?php //echo $customerId;      ?>">Edit</a>-->
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>customer/removeVehicle/<?php echo urlencode(base64_encode($id)); ?>/<?php echo $customerId; ?>">Remove</a>
                         </td>
