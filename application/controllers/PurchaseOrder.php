@@ -11,12 +11,21 @@ class PurchaseOrder extends CI_Controller {
         $customerId = $this->input->post('customer_id');
         $storeId = $this->input->post('storeLocation');
 
+        $enteredQty = $this->input->post('quantity');
+        if($enteredQty<=0){
+             $this->session->set_flashdata('feedback', 'Please enter a valid Quantity');
+            redirect('view/newPO/'.urlencode(base64_encode($customerId)));
+        }
         $price = $this->customer_model->fetchPrice($customerId, $storeId, $paymentType);
         $priceId = -1;
         if ($price) {
             $priceId = $price->id;
         }
-
+        else
+        {
+            $this->session->set_flashdata('feedback', 'Please enter a valid price');
+            redirect('view/newPO/'.urlencode(base64_encode($customerId)));
+        }
         $customerAddressId = $this->input->post('customerAddress_id');
         if (!$customerAddressId) {
             $customerAddressId = -1;

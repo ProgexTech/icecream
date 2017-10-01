@@ -42,7 +42,7 @@ class Container extends CI_Controller {
         $cId = base64_decode(urldecode($containerId));
         $containerRow = $this->container_model->getContainerById($cId);
         $shipmentId = urlencode(base64_encode($containerRow->shipmentId));
-
+ 
         $stock = $this->stock_model->getStockByContainerId($cId);
         if ($stock->currentQty === $containerRow->qty) {
             $this->container_model->remove($cId);
@@ -50,7 +50,7 @@ class Container extends CI_Controller {
         }
 
         $url = '/view/viewContainers/' . $shipmentId;
-        redirect($url);
+        //redirect($url);
     }
 
     public function edit() {
