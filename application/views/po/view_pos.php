@@ -44,16 +44,12 @@
                                    href="<?php echo base_url(); ?>view/viewPO/<?php echo urlencode(base64_encode($bill->id)); ?>">Details</a>
                                 <a class="btn btn-primary btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/printPO/<?php echo urlencode(base64_encode($bill->id)); ?>">Re-Print PO</a>
-                                   <?php //$bill = $this->bill_model->getBillByPOId($po->id); echo $po->id; ?>
-                                <!--                                <a class="btn btn-primary btn-xs" role="button"
-                                                                   href="<?php //echo base_url();    ?>view/printDeliveryNote/<?php //echo urlencode(base64_encode($bill->id));    ?>">Print</a>-->
-
-                            <?php else : ?>
+                               <?php else : ?>
                                 <a class="btn btn-danger btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/processPO/<?php echo urlencode(base64_encode($bill->id)); ?>">Proceed</a>
-                                <!--                                <a class="btn btn-primary btn-xs" role="button"
-                                                                   href="<?php echo base_url(); ?>view/printPO/<?php echo urlencode(base64_encode($bill->id)); ?>">Print PO</a>-->
-                            <?php endif; ?>
+                                <a class="btn btn-warning btn-xs" role="button"
+                                   href="<?php echo base_url(); ?>purchaseOrder/cancelPO/<?php echo urlencode(base64_encode($bill->id)); ?>">Cancel</a>
+                               <?php endif; ?>
                         </td>
                     </tr>
                     <?php

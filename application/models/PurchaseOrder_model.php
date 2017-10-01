@@ -76,4 +76,9 @@ class PurchaseOrder_model extends CI_Model {
         $this->db->update('purchase_order', $data);
     }
 
+    public function deletePO($poId) {
+        $this->db->where('id', $poId);
+        $this->db->delete('purchase_order');
+    }
+
 }

@@ -80,7 +80,7 @@ class PurchaseOrder extends CI_Controller {
             $this->session->set_flashdata('feedback', 'Please enter a valid Quantity');
             redirect('view/processPO/' . urlencode(base64_encode($poId)));
         }
-        
+
         $amount = $uPrice * $qty;
         $dt = new DateTime("now", new DateTimeZone("Asia/Colombo"));
 
@@ -132,6 +132,19 @@ class PurchaseOrder extends CI_Controller {
         }
         $this->purchaseOrder_model->setUpdateAsDelivered($poId);
         redirect('/view/printDeliveryNote/' . urlencode(base64_encode($billId)));
+    }
+
+    public function cancelPO($poId) {
+        $this->load->model('purchaseOrder_model');
+        $this->load->model('purchaseOrderStock_model');
+        $this->load->model('sale_model');
+        $this->load->model('stock_model');
+        $this->load->model('bill_model');
+
+        $this->purchaseOrder_model->deletePO(base64_decode(urldecode($poId)));
+        $this->purchaseOrderStock_model->deletePOStock(base64_decode(urldecode($poId)));
+
+        redirect('/view/viewPOs');
     }
 
 }
