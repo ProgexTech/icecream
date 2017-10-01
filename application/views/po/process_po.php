@@ -1,4 +1,5 @@
 <script>
+
     $(document).on('keyup change', '#qty', function() {
         var qty = $(this).val();
         //alert(qty);
@@ -14,6 +15,7 @@
         $('#tot').val(total);
     });
 </script>
+
 <?php
 $bill = $this->purchaseOrder_model->getPOById(base64_decode(urldecode($poId)));
 $customerInfo = $this->customer_model->getCustomerById($bill->customerId);
@@ -23,11 +25,14 @@ $driverInfo = $this->customer_model->getDriver($bill->customerDriverId);
 $customerPrice = $this->customer_model->getPriceById($bill->customerPriceId);
 $availableStock = $this->stock_model->getAllRemainingQuantity();
 ?>
+
 <div class="container-fluid">
     <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>purchaseOrder/finalize">
+
         <!-- Customer Details -->
         <h4>Customer Details</h4>
         <hr/>
+
         <div class="row">
             <div class="col-md-1 form-text">
                 <p class="text-right"><strong>Code : </strong></p>
@@ -68,11 +73,15 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
                 <p class="text-left"><?php echo $driverInfo->name; ?></p>
             </div>
         </div>
+
         <br/>
+
         <!-- PO Details -->
         <h4>Purchase Order Details</h4>
         <hr/>
+
         <input type="hidden" name="poId" value="<?php echo $poId; ?>"/>
+
         <div class="form-group">
             <label for="date_time" class="col-sm-2 control-label">Purchase Order Date</label>
             <div class="col-sm-5 ">
@@ -136,4 +145,5 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
             </div>
         </div>
     </form>
+
 </div>

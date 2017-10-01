@@ -3,6 +3,7 @@ if (isset($customerId)) {
     $customer = $this->customer_model->getCustomerById(base64_decode(urldecode($customerId)));
 }
 ?>
+
 <div>
     <legend>Add Vehicle</legend>
     <form class="form-inline" method="post" action="<?php echo base_url(); ?>customer/addVehicle">
@@ -44,6 +45,7 @@ if (isset($customerId)) {
     </form>
 </div>
 <br/><br/>
+
 <div id="div-table">
     <legend>All Vehicles</legend>
     <table class="table table-striped">
@@ -71,16 +73,16 @@ if (isset($customerId)) {
                                href="<?php echo base_url(); ?>view/editVehicle/<?php //echo urlencode(base64_encode($id));      ?>/<?php //echo $customerId;      ?>">Edit</a>-->
                             <a class="btn btn-danger btn-xs" role="button"
                                href="<?php echo base_url(); ?>customer/removeVehicle/<?php echo urlencode(base64_encode($id)); ?>/<?php echo $customerId; ?>">Remove</a>
-                        </td>
-                    </tr>
+                                </td>
+                            </tr>
                     <?php
-                endforeach;
-            else:
-                ?>
-                <tr>
-                    <td colspan="9">No Entries</td>
-                </tr>
-            <?php endif; ?>
+                    endforeach;
+                    else:
+                    ?>
+                    <tr>
+                        <td colspan="9">No Entries</td>
+                    </tr>
+                    <?php endif; ?>
         </tbody>
     </table>
 </div>

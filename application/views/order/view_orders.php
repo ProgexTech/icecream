@@ -41,7 +41,7 @@
                                 <a class="btn btn-warning btn-xs" role="button"
                                    href="<?php echo base_url(); ?>view/editOrder/<?php echo urlencode(base64_encode($order->id)); ?>">Edit</a>
                                 <!--<a class="btn btn-danger btn-xs" role="button"
-                                   href="<?php //echo base_url();  ?>order/cancel/<?php //echo urlencode(base64_encode($order->id));  ?>">Cancel</a>-->
+                                   href="<?php //echo base_url();   ?>order/cancel/<?php //echo urlencode(base64_encode($order->id));   ?>">Cancel</a>-->
                             <?php endif; ?>
                         </td>
                     </tr>
