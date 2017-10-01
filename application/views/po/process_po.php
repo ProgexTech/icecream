@@ -25,7 +25,6 @@ $driverInfo = $this->customer_model->getDriver($bill->customerDriverId);
 $customerPrice = $this->customer_model->getPriceById($bill->customerPriceId);
 $availableStock = $this->stock_model->getAllRemainingQuantity();
 ?>
-
 <div class="container-fluid">
     <form class="form-horizontal" method="post" action="<?php echo base_url(); ?>purchaseOrder/finalize">
 
@@ -80,6 +79,9 @@ $availableStock = $this->stock_model->getAllRemainingQuantity();
         <h4>Purchase Order Details</h4>
         <hr/>
 
+        <div >
+            <p  style="color:red; font-weight:bold;"><?php echo $this->session->flashdata('feedback'); ?></p>
+        </div>
         <input type="hidden" name="poId" value="<?php echo $poId; ?>"/>
 
         <div class="form-group">

@@ -114,3 +114,13 @@
 .fixed-width-110 {
     width: 110px;
 }
+
+.add-space-after:after {
+    margin-bottom: 2px;
+}
+
+#fixedTotalQtyDiv {
+    position: fixed;
+    margin-left: 900px;
+    top: 400px;
+}
